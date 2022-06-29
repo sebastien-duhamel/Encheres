@@ -2,8 +2,9 @@ package fr.teamA.encheres.dal;
 
 public abstract class DAOFactory {
 	
-	public static InterfaceDAO getInterfaceDAO()
+	public static UtilisateurDAO getInterfaceDAO()
 	{
-		return new DaoJdbcImpl();
+		return new UtilisateurDaoJdbcImpl();
 	}
+	
 }

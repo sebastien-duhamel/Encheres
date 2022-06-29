@@ -36,6 +36,7 @@ public class ServletProfilCreation extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/AjoutProfilCreation.jsp");
 		rd.forward(request, response);
+		// TODO Auto-generated constructor stub rd.forward(session, response) à étudier
 	}
 
 	/**
@@ -44,46 +45,21 @@ public class ServletProfilCreation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur=new ArrayList<>();
-		int noUtilisateur;
-		String pseudo;
-		String nom;
-		String prenom;
-		String email;
-		String telephone;
-		String rue;
-		String codePostal;
-		String ville;
-		String motDePasse;
+		
 		String verifMDP;
 		
-		motDePasse = request.getParameter("mot_de_passe");
-		verifMDP = request.getParameter("verifMDP");
-		
-////		BusinessException businessException = new BusinessException();
-//		if(!motDePasse.equals(verifMDP) || verifMDP==null || motDePasse==null) {
-////			businessException.ajouterErreur(CodesResultatBLL.REGLE_CONFIRMATION_MDP_ERREUR);
-//			listeCodesErreur.add(CodesResultatServlets.CONFIRMATION_MDP_ERREUR);
-//		}
-//		
 		try
 		{
-			System.out.println("je suis dans le try de la servletProfilCreation");
-			pseudo = request.getParameter("pseudo");
-			System.out.println("pseudo");
-
-			nom = request.getParameter("nom");
-			prenom = request.getParameter("prenom");
-			email = request.getParameter("email");
-			telephone = request.getParameter("telephone");
-			rue = request.getParameter("rue");
-			codePostal = request.getParameter("code_postal");
-			ville = request.getParameter("ville");
-			motDePasse = request.getParameter("motDePasse");
+			Utilisateur utilisateur = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
+					request.getParameter("prenom"), request.getParameter("email"), request.getParameter("telephone"),
+					request.getParameter("rue"),request.getParameter("code_postal"), request.getParameter("ville"),
+					request.getParameter("motDePasse"), 2000, 0);
+			
 			verifMDP = request.getParameter("verifMDP");
 			System.out.println();
 
 			UtilisateurManager utilisateurManager = new UtilisateurManager();
-			Utilisateur utilisateur = utilisateurManager.ajouterUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			utilisateurManager.ajouterUtilisateur(utilisateur, verifMDP);
 			request.setAttribute("utilisateur", utilisateur);
 		}
 		catch(NumberFormatException e)
@@ -94,7 +70,6 @@ public class ServletProfilCreation extends HttpServlet {
 			
 			request.setAttribute("listeCodesErreur",listeCodesErreur);
 		} catch (BusinessException e) { 
-		System.out.println("2eme catch");
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			e.printStackTrace();
 		}

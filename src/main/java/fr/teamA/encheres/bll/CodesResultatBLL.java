@@ -30,4 +30,6 @@ public abstract class CodesResultatBLL {
 	
 	public static final int REGLE_CONFIRMATION_MDP_ERREUR = 20009 ;
 	
+	
+	
 }

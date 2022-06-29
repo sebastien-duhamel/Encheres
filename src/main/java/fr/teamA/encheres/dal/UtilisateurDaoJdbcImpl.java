@@ -9,7 +9,7 @@ import fr.teamA.encheres.bo.Utilisateur;
 
 
 
-public class DaoJdbcImpl implements InterfaceDAO{
+public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	
 	private static final String INSERT_UTILISATEURS = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	

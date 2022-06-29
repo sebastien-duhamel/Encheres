@@ -3,8 +3,8 @@ package fr.teamA.encheres.bll;
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.Utilisateur;
 import fr.teamA.encheres.dal.DAOFactory;
-import fr.teamA.encheres.dal.InterfaceDAO;
-import fr.teamA.encheres.servlets.ServletProfilCreation;
+import fr.teamA.encheres.dal.UtilisateurDAO;
+
 
 public class UtilisateurManager {
 
@@ -14,14 +14,14 @@ public class UtilisateurManager {
 	 * Cette classe permet d'effectuer les traitements attendus sur la classe Avis
 	 */
 
-	private InterfaceDAO interfaceDAO;
+	private UtilisateurDAO utilisateurDAO;
 
 	/**
 	 * Le constructeur permet d'initialiser la variable membre avisDAO pour
 	 * permettre une communication avec la base de données.
 	 */
 	public UtilisateurManager() {
-		this.interfaceDAO = DAOFactory.getInterfaceDAO();
+		this.utilisateurDAO = DAOFactory.getInterfaceDAO();
 	}
 
 	/**
@@ -30,12 +30,8 @@ public class UtilisateurManager {
 	 * @return un objet Avis en cas de succcès
 	 * @throws BusinessException
 	 */
-	public Utilisateur ajouterUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse) throws BusinessException {
+	public Utilisateur ajouterUtilisateur(Utilisateur utilisateur, String verifMDP) throws BusinessException {
 		BusinessException exception = new BusinessException();
-
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-				motDePasse, 0, 0);
 
 		this.validerPseudo(utilisateur, exception);
 		this.validerNom(utilisateur, exception);
@@ -45,10 +41,10 @@ public class UtilisateurManager {
 		this.validerRue(utilisateur, exception);
 		this.validerCodePostal(utilisateur, exception);
 		this.validerVille(utilisateur, exception);
-		this.validerMotDePasse(utilisateur, exception);
+		this.validerMotDePasse(utilisateur, verifMDP, exception);
 
 		if (!exception.hasErreurs()) {
-			this.interfaceDAO.insert(utilisateur);
+			this.utilisateurDAO.insert(utilisateur);
 		}
 
 		if (exception.hasErreurs()) {
@@ -106,9 +102,13 @@ public class UtilisateurManager {
 		}
 	}
 	
-	private void validerMotDePasse(Utilisateur utilisateur, BusinessException businessException) {
+	private void validerMotDePasse(Utilisateur utilisateur, String verifMDP, BusinessException businessException) {
 		if (utilisateur.getMotDePasse() == null || utilisateur.getMotDePasse().trim().length() > 30) {
 			businessException.ajouterErreur(CodesResultatBLL.REGLE_FORMAT_MDP_ERREUR);
+		}
+		
+		if(!utilisateur.getMotDePasse().equals(verifMDP)){
+			businessException.ajouterErreur(CodesResultatBLL.REGLE_CONFIRMATION_MDP_ERREUR);
 		}
 		
 	}

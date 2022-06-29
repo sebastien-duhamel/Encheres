@@ -1,27 +1,35 @@
 <%@page import="fr.teamA.encheres.messages.LecteurMessage"%>
 <%@page import="java.util.List"%>
+<%@page import="fr.teamA.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="fr">
 <head>
-<link href="<%=request.getContextPath()%>/css/style.css"
-	rel="stylesheet">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Création Nouvel Utilisateur</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="<%=request.getContextPath()%>/ressources/css/style.css" rel="stylesheet">
+    <title>Creation utilisateur</title>
 </head>
 <body>
-	<h1>Mon profil</h1>
+		<header>
+			<h2>Eni-Encheres</h2>
+		</header>
+		<h3>Mon profil</h3>
+		
 
-	<div class="contenu">
-
-
+	<div class="insertion">
 
 		<%
+		int ok = 0;
 		List<Integer> listeCodesErreur = (List<Integer>) request.getAttribute("listeCodesErreur");
 		if (listeCodesErreur != null) {
+			ok = 1;
 		%>
-		<p style="color: red;">Erreur, le repas n'a pas pu être ajouté :</p>
+		<p style="color: red;">Erreur, L'utilisateur n'a pas été ajouté :</p>
 		<%
 		for (int codeErreur : listeCodesErreur) {
 		%>
@@ -31,57 +39,89 @@
 		}
 		%>
 
-		<form action="<%=request.getContextPath()%>/ServletProfilCreation"
-			method="post">
-			<div class="saisie">
+		<%
+		Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
+		if (utilisateur != null) {
+		%>
+		<p
+			style="color: green; text-decoration: blink; background-color: yellow">l'utilisateur
+			a été ajouté :</p>
+
+		<%
+		}
+		%>
+		</br>
+		</br>
+		</div>
+		
+		
+		<form action="<%=request.getContextPath()%>/ServletProfilCreation" method="post">
+			<div class="container">
+			<div class="item">
 				<label for="pseudo">Pseudo : </label> <input type="text"
-					name="pseudo" value="<%=request.getParameter("pseudo")%>" />
+					name="pseudo"
+					value="<%=listeCodesErreur != null ? request.getParameter("pseudo") : ""%>" />
 			</div>
-			<div class="saisie">
+			<div class="item">
 				<label for="nom">Nom: </label> <input type="text" name="nom"
-					value="<%=request.getParameter("nom")%>" />
+					value="<%=listeCodesErreur != null ? request.getParameter("nom") : ""%>" />
 			</div>
-			<div class="saisie">
+			<div class="item">
 				<label for="prenom">Prenom : </label> <input type="text"
-					name="prenom" value="<%=request.getParameter("prenom")%>" />
+					name="prenom"
+					value="<%=listeCodesErreur != null ? request.getParameter("prenom") : ""%>" />
 			</div>
-			<div class="saisie">
-				<label for="email">Email : </label> <input type="text" name="email"
-					value="<%=request.getParameter("email")%>" />
+			<div class="item">
+				<label for="email">Email : </label> <input type="email" name="email"
+					value="<%=listeCodesErreur != null ? request.getParameter("email") : ""%>" />
 			</div>
-			<div class="saisie">
+			<div class="item">
 				<label for="telephone"> Telephone : </label> <input type="text"
-					name="telephone" value="<%=request.getParameter("telephone")%>" />
+					name="telephone"
+					value="<%=listeCodesErreur != null ? request.getParameter("telephone") : ""%>" />
 			</div>
-			<div class="saisie">
+			<div class="item">
 				<label for="rue">Rue : </label> <input type="text" name="rue"
-					value="<%=request.getParameter("rue")%>" />
+					value="<%=listeCodesErreur != null ? request.getParameter("rue") : ""%>" />
 			</div>
-			<div class="saisie">
+			<div class="item">
 				<label for="code_postal"> code_postal : </label> <input type="text"
-					name="code_postal" value="<%=request.getParameter("code_postal")%>" />
+					name="code_postal"
+					value="<%=listeCodesErreur != null ? request.getParameter("code_postal") : ""%>" />
+			</div>
+
+			<div class="item">
+				<label for="ville">Ville : </label> <input type="text" name="ville"
+					value="<%=listeCodesErreur != null ? request.getParameter("ville") : ""%>" />
+			</div>
+
+			<div class="item">
+				<label for="motDePasse">Mot de passe : </label> <input
+					type="password" name="motDePasse"
+					value="<%=listeCodesErreur != null ? request.getParameter("motDePasse") : ""%>" />
+			</div>
+			<div class="item">
+				<label for="verifMDP">Confirmation : </label> <input type="password"
+					name="verifMDP"
+					value="<%=listeCodesErreur != null ? request.getParameter("verifMDP") : ""%>" />
 			</div>
 			
-			<div class="saisie">
-                <label for="ville">Ville : </label>
-                <input type="text" name="ville" value="<%=request.getParameter("ville")%>"/>
-            </div>
-            
-            <div class="saisie">
-                <label for="motDePasse">Mot de passe : </label>
-                <input type="text" name="motDePasse" value="<%=request.getParameter("motDePasse")%>"/>
-            </div>
-            <div class="saisie">
-                <label for="verifMDP">Confirmation : </label>
-                <input type="text" name="verifMDP" value="<%=request.getParameter("verifMDP")%>"/>
-            </div>
-			<div>
-				<input type="submit" value="Valider" /> <a
-					href="<%=request.getContextPath()%>"><input type="button"
-					value="Annuler" /></a>
 			</div>
+			</br>
+			</br>
+			<div class="container2">
+				<div class= "item2">
+				<input class="valider"type="submit" value="Valider" /> 
+				</div>
+				<div class= "item2">
+				<a href="<%=request.getContextPath()%>">
+				<input class="valider" type="reset" value="Annuler" /></a>
+				</div>
+			</div>
+				
 		</form>
+		
 
-	</div>
+
 </body>
 </html>

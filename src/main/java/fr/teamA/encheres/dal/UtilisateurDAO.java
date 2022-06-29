@@ -4,7 +4,7 @@ import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.Utilisateur;
 
 
-public interface InterfaceDAO {
+public interface UtilisateurDAO {
 	public void insert(Utilisateur utilisateur) throws BusinessException;
 	
 }
