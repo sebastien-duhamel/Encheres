@@ -21,7 +21,7 @@ public class UtilisateurManager {
 	 * permettre une communication avec la base de données.
 	 */
 	public UtilisateurManager() {
-		this.utilisateurDAO = DAOFactory.getInterfaceDAO();
+		this.utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
 
 	/**

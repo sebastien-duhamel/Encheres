@@ -30,6 +30,14 @@ public abstract class CodesResultatBLL {
 	
 	public static final int REGLE_CONFIRMATION_MDP_ERREUR = 20009 ;
 	
+	public static final int REGLE_FORMAT_NOM_ARTICLE_ERREUR = 20010 ;
 	
+	public static final int REGLE_FORMAT_DESCRIPTION_ERREUR = 20011 ;
+	
+	public static final int REGLE_DEBUT_ERREUR = 20012;
+	
+	public static final int REGLE_FIN_ERREUR = 20013;
+	
+	public static final int REGLE_MISE_A_PRIX_ERREUR = 20014;
 	
 }

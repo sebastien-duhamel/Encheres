@@ -104,6 +104,10 @@ public class ArticleVendu implements Serializable {
 	public int getNoArticle() {
 		return noArticle;
 	}
+	
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}	
 
 	@Override
 	public String toString() {
@@ -111,6 +115,8 @@ public class ArticleVendu implements Serializable {
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
 	}
+
+	
 	
 	
 }

@@ -10,12 +10,12 @@ public abstract class CodesResultatDAL {
 	 */
 	public static final int INSERT_UTILISATEUR_NULL=10000;
 	
+
+	
 	/**
 	 * Echec général quand erreur non gérée à l'insertion 
 	 */
 	public static final int INSERT_UTILISATEUR_ECHEC=10001;
-
-	
 	/**
 	 * Echec de la lecture des listes de course
 	 */
@@ -48,6 +48,10 @@ public abstract class CodesResultatDAL {
 	 * Erreur au décochage de tous les articles d'une liste
 	 */
 	public static final int DECOCHE_ARTICLES_ERREUR = 10009;
+	
+	public static final int INSERT_ARTICLES_VENDUS_NULL=10010;
+	
+	public static final int INSERT_ARTICLES_VENDUS_ECHEC=10011;
 }
 
 
