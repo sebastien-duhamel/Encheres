@@ -45,5 +45,7 @@ public abstract class CodesResultatBLL {
 	public static final int REGLE_MISE_A_PRIX_ERREUR = 20016;
 	
 	public static final int REGLE_PSEUDO_DEJA_EXISTANT = 20017;
+	
+	public static final int REGLE_EMAIL_EXISTANT = 20018;
 
 }

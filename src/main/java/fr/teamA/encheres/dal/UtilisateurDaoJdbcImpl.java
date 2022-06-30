@@ -17,6 +17,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String INSERT_UTILISATEURS = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String GET_USER_BY_PSEUDO ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where pseudo=? ;";
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
+	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
 		if(utilisateur==null)
@@ -126,6 +127,36 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		}
 		
 		return listePseudo;
+	}
+	
+	
+	@Override
+	public List<String> getListeEmail() throws BusinessException{
+	
+		List<String> listeEmail = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_LIST_EMAIL)){
+		
+			try(ResultSet rs = pstmt.executeQuery()){
+		
+				
+					while(rs.next()) {
+						String email =null;
+						email = rs.getString("email");
+						listeEmail.add(email);
+				
+					}
+				
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_PSEUDO_ECHEC_BDD);
+			throw businessException;
+		}
+		
+		return listeEmail;
 	}
 
 }
