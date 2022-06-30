@@ -16,6 +16,6 @@ public abstract class CodesResultatServlets {
 	public static final Integer NOM_LISTE_OBLIGATOIRE = 30002;
 	public static final Integer FORMAT_UTILISATEUR_ERREUR = 30003;
 	
-	
+	public static final Integer IDENTIFIANT_KO = 30004;
 	
 }

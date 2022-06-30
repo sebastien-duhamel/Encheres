@@ -3,6 +3,9 @@ package fr.teamA.encheres.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.Utilisateur;
@@ -12,7 +15,8 @@ import fr.teamA.encheres.bo.Utilisateur;
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	
 	private static final String INSERT_UTILISATEURS = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
-	
+	private static final String GET_USER_BY_PSEUDO ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where pseudo=? ;";
+	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
 		if(utilisateur==null)
@@ -73,5 +77,55 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		
 	}
 
+	@Override
+	public Utilisateur getUtilisateurbyPseudo(String identifiant) throws BusinessException {
+		Utilisateur utilisateur = null;
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_USER_BY_PSEUDO)){
+			pstmt.setString(1, identifiant);
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					utilisateur = new Utilisateur(rs.getInt("no_Utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), 
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getInt("administrateur"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);
+			throw businessException;
+		}
+		
+		return utilisateur;
+	}
+
+	@Override
+	public List<String> getListePseudo() throws BusinessException{
+	
+		List<String> listePseudo = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_LIST_PSEUDO)){
+		
+			try(ResultSet rs = pstmt.executeQuery()){
+		
+				
+					while(rs.next()) {
+						String pseudo =null;
+						pseudo = rs.getString("pseudo");
+						listePseudo.add(pseudo);
+				
+					}
+				
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_PSEUDO_ECHEC_BDD);
+			throw businessException;
+		}
+		
+		return listePseudo;
+	}
 
 }

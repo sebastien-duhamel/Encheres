@@ -1,11 +1,8 @@
 package fr.teamA.encheres.dal;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.ArticleVendu;
 

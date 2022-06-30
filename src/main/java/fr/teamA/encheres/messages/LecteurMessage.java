@@ -46,7 +46,7 @@ public class LecteurMessage {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			message="Une erreur inconnue est survenue";
+			message="Une erreur inconnue est survenue, dans le cacth du lecteur message";
 		}
 		System.out.println("message="+message);
 		return message;

@@ -1,50 +1,64 @@
 package fr.teamA.encheres.bll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.Utilisateur;
 import fr.teamA.encheres.dal.DAOFactory;
-import fr.teamA.encheres.dal.UtilisateurDAO;
+
 
 
 public class UtilisateurManager {
-
-	/*
-	 * @author Administrator
-	 *
-	 * Cette classe permet d'effectuer les traitements attendus sur la classe Avis
-	 */
-
-	private UtilisateurDAO utilisateurDAO;
-
-	/**
-	 * Le constructeur permet d'initialiser la variable membre avisDAO pour
-	 * permettre une communication avec la base de données.
-	 */
-	public UtilisateurManager() {
-		this.utilisateurDAO = DAOFactory.getUtilisateurDAO();
+	
+	private static UtilisateurManager instance;
+	
+	
+	private UtilisateurManager() {
+		super();
 	}
-
-	/**
-	 * @param description
-	 * @param note
-	 * @return un objet Avis en cas de succcès
-	 * @throws BusinessException
-	 */
+	
+	public static UtilisateurManager getInstance() {
+		
+		if (instance==null) {
+			instance = new UtilisateurManager();
+		}
+		System.out.println(instance.toString());
+		return instance;
+		
+	}
+	
+	
+	public Utilisateur seConnecter(String identifiant, String motDePasse) throws BusinessException {
+		Utilisateur utilisateur = DAOFactory.getUtilisateurDAO().getUtilisateurbyPseudo(identifiant);
+		
+		if(utilisateur==null || !motDePasse.equals(utilisateur.getMotDePasse())) {
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatBLL.IDENTIFIANT_KO);
+			throw businessException;
+			
+		}
+		return utilisateur;
+	}
+	
+	
+	
 	public Utilisateur ajouterUtilisateur(Utilisateur utilisateur, String verifMDP) throws BusinessException {
 		BusinessException exception = new BusinessException();
-
-		this.validerPseudo(utilisateur, exception);
-		this.validerNom(utilisateur, exception);
-		this.validerPrenom(utilisateur, exception);
-		this.validerEmail(utilisateur, exception);
-		this.validerTelephone(utilisateur, exception);
-		this.validerRue(utilisateur, exception);
-		this.validerCodePostal(utilisateur, exception);
-		this.validerVille(utilisateur, exception);
-		this.validerMotDePasse(utilisateur, verifMDP, exception);
+				
+		validerPseudo(utilisateur, exception);
+		validerNom(utilisateur, exception);
+		validerPrenom(utilisateur, exception);
+		validerEmail(utilisateur, exception);
+		validerTelephone(utilisateur, exception);
+		validerRue(utilisateur, exception);
+		validerCodePostal(utilisateur, exception);
+		validerVille(utilisateur, exception);
+		validerMotDePasse(utilisateur, verifMDP, exception);
 
 		if (!exception.hasErreurs()) {
-			this.utilisateurDAO.insert(utilisateur);
+		//	this.utilisateurDAO.insert(utilisateur);
+			DAOFactory.getUtilisateurDAO().insert(utilisateur);
 		}
 
 		if (exception.hasErreurs()) {
@@ -54,9 +68,19 @@ public class UtilisateurManager {
 	}
 
 	private void validerPseudo(Utilisateur utilisateur, BusinessException businessException) {
-
-		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().length() > 30) {
+		List<String> listePseudo = new ArrayList<>();
+		
+		try {
+			listePseudo = DAOFactory.getUtilisateurDAO().getListePseudo();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().equals("") || utilisateur.getPseudo().trim().length() > 30) {
 			businessException.ajouterErreur(CodesResultatBLL.REGLE_FORMAT_PSEUDO_ERREUR);
+		}
+		if(listePseudo.contains(utilisateur.getPseudo())) {
+			businessException.ajouterErreur(CodesResultatBLL.REGLE_PSEUDO_DEJA_EXISTANT);
 		}
 	}
 

@@ -11,7 +11,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="<%=request.getContextPath()%>/ressources/css/style.css" rel="stylesheet">
+  <link href="ressources/css/style.css" rel="stylesheet">
     <title>Creation utilisateur</title>
 </head>
 <body>
@@ -55,55 +55,39 @@
 		</div>
 		
 		
-		<form action="<%=request.getContextPath()%>/ServletProfilCreation" method="post">
+		<form action="ProfilCreation" method="post">
 			<div class="container">
 			<div class="item">
-				<label for="pseudo">Pseudo : </label> <input type="text"
-					name="pseudo"
-					value="<%=listeCodesErreur != null ? request.getParameter("pseudo") : ""%>" />
+				<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo">
+				
 			</div>
 			<div class="item">
-				<label for="nom">Nom: </label> <input type="text" name="nom"
-					value="<%=listeCodesErreur != null ? request.getParameter("nom") : ""%>" />
+				<label for="nom">Nom: </label> <input type="text" name="nom" id ="nom">
+				
 			</div>
 			<div class="item">
-				<label for="prenom">Prenom : </label> <input type="text"
-					name="prenom"
-					value="<%=listeCodesErreur != null ? request.getParameter("prenom") : ""%>" />
+				<label for="prenom">Prenom : </label> <input type="text" name="prenom" id="prenom" />
 			</div>
 			<div class="item">
-				<label for="email">Email : </label> <input type="email" name="email"
-					value="<%=listeCodesErreur != null ? request.getParameter("email") : ""%>" />
+				<label for="email">Email : </label> <input type="email" name="email" id="email">
 			</div>
 			<div class="item">
-				<label for="telephone"> Telephone : </label> <input type="text"
-					name="telephone"
-					value="<%=listeCodesErreur != null ? request.getParameter("telephone") : ""%>" />
+				<label for="telephone"> Telephone : </label> <input type="text"	name="telephone" id="telephone">
 			</div>
 			<div class="item">
-				<label for="rue">Rue : </label> <input type="text" name="rue"
-					value="<%=listeCodesErreur != null ? request.getParameter("rue") : ""%>" />
+				<label for="rue">Rue : </label> <input type="text" name="rue" id="rue">
 			</div>
 			<div class="item">
-				<label for="code_postal"> code_postal : </label> <input type="text"
-					name="code_postal"
-					value="<%=listeCodesErreur != null ? request.getParameter("code_postal") : ""%>" />
-			</div>
-
-			<div class="item">
-				<label for="ville">Ville : </label> <input type="text" name="ville"
-					value="<%=listeCodesErreur != null ? request.getParameter("ville") : ""%>" />
-			</div>
-
-			<div class="item">
-				<label for="motDePasse">Mot de passe : </label> <input
-					type="password" name="motDePasse"
-					value="<%=listeCodesErreur != null ? request.getParameter("motDePasse") : ""%>" />
+				<label for="code_postal"> code_postal : </label> <input type="text"	name="code_postal" id="code_postal">
 			</div>
 			<div class="item">
-				<label for="verifMDP">Confirmation : </label> <input type="password"
-					name="verifMDP"
-					value="<%=listeCodesErreur != null ? request.getParameter("verifMDP") : ""%>" />
+				<label for="ville">Ville : </label> <input type="text" name="ville" id="ville">
+			</div>
+			<div class="item">
+				<label for="motDePasse">Mot de passe : </label> <input type="password" name="motDePasse" id="motDePass">
+			</div>
+			<div class="item">
+				<label for="verifMDP">Confirmation : </label> <input type="password" name="verifMDP" id="verifMDP">
 			</div>
 			
 			</div>

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,16 +17,13 @@ import fr.teamA.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ServletAjoutAvis
  */
-@WebServlet("/ServletProfilCreation")
+@WebServlet("/ProfilCreation")
 public class ServletProfilCreation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public ServletProfilCreation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -34,46 +32,47 @@ public class ServletProfilCreation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/AjoutProfilCreation.jsp");
 		rd.forward(request, response);
-		// TODO Auto-generated constructor stub rd.forward(session, response) à étudier
 	}
 
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		List<Integer> listeCodesErreur=new ArrayList<>();
-		
+		List<Integer> listeCodesErreur = new ArrayList<>();
 		String verifMDP;
-		
-		try
-		{
+	
+//		HttpSession session = request.getSession();
+//		session.setAttribute("sessionOK", session);
+//		Cookie[] cookies = request.getCookies();
+
+		try {
 			Utilisateur utilisateur = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
 					request.getParameter("prenom"), request.getParameter("email"), request.getParameter("telephone"),
-					request.getParameter("rue"),request.getParameter("code_postal"), request.getParameter("ville"),
-					request.getParameter("motDePasse"), 2000, 0);
-			
-			verifMDP = request.getParameter("verifMDP");
-			System.out.println();
+					request.getParameter("rue"), request.getParameter("code_postal"), request.getParameter("ville"),
+					request.getParameter("motDePasse"), 0, 0);
 
-			UtilisateurManager utilisateurManager = new UtilisateurManager();
-			utilisateurManager.ajouterUtilisateur(utilisateur, verifMDP);
+			verifMDP = request.getParameter("verifMDP");
+			
+			UtilisateurManager.getInstance().ajouterUtilisateur(utilisateur, verifMDP);
 			request.setAttribute("utilisateur", utilisateur);
-		}
-		catch(NumberFormatException e)
-		{
-			System.out.println("1er catch");
+			
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			listeCodesErreur.add(CodesResultatServlets.FORMAT_UTILISATEUR_ERREUR);
-			
-			request.setAttribute("listeCodesErreur",listeCodesErreur);
-		} catch (BusinessException e) { 
+
+			request.setAttribute("listeCodesErreur", listeCodesErreur);
+		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/AjoutProfilCreation.jsp");
 		rd.forward(request, response);
 	}
