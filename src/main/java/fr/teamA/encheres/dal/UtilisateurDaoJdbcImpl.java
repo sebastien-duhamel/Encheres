@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String INSERT_UTILISATEURS = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String GET_USER_BY_PSEUDO ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where pseudo=? ;";
 	private static final String GET_USER_BY_EMAIL ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where email=? ;";
+	private static final String GET_USER_BY_ID ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where no_utilisateur=? ;";
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
 	@Override
@@ -101,6 +103,30 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		return utilisateur;
 	}
 
+	protected Utilisateur getUtilisateurbyId(int noUtilisateur) throws BusinessException {
+		
+	
+		
+		Utilisateur utilisateur = null;
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_USER_BY_ID)){
+			pstmt.setInt(1, noUtilisateur);
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					utilisateur = new Utilisateur(rs.getInt("no_Utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), 
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getInt("administrateur"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);
+			throw businessException;
+		}
+		
+		return utilisateur;
+		
+	}
 
 	@Override
 	public Utilisateur getUtilisateurbyEmail(String identifiant) throws BusinessException {

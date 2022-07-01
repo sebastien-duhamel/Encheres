@@ -15,13 +15,13 @@ public class ArticleVendu implements Serializable {
 	private int miseAPrix = 0;
 	private int prixVente = 0;
 	private int etatVente;
-	
+	private Utilisateur vendeur;
 	public ArticleVendu() {
 		super();
 	}
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int miseAPrix, int prixVente, int etatVente) {
+			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -30,10 +30,11 @@ public class ArticleVendu implements Serializable {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.vendeur = vendeur;
 	}
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur vendeur ) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -43,6 +44,16 @@ public class ArticleVendu implements Serializable {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.vendeur = vendeur;
+	}
+
+	
+	public Utilisateur getVendeur() {
+		return vendeur;
+	}
+
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
 	}
 
 	public String getNomArticle() {
