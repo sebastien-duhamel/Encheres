@@ -40,8 +40,8 @@ public class ServletSeConnecter extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 		
 		try {
-			
 			Utilisateur utilisateur = UtilisateurManager.getInstance().seConnecter(identifiant, motDePasse);
+			request.getSession().setAttribute("utilsateur", utilisateur);
 			response.sendRedirect("https://www.google.fr");
 		} catch (BusinessException e) {
 			

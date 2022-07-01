@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bll.ArticleVenduManager;
+import fr.teamA.encheres.bll.UtilisateurManager;
 import fr.teamA.encheres.bo.ArticleVendu;
+import fr.teamA.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletAcceuil
  */
-@WebServlet("/Acceuil")
+@WebServlet("/Accueil")
 public class ServletAcceuil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +33,7 @@ public class ServletAcceuil extends HttpServlet {
 
 		try {
 			List<ArticleVendu> listeArticleVendu = ArticleVenduManager.getInstanceArticle().venteEnCours();
-				
+			
 			request.setAttribute("listeArticleVendu", listeArticleVendu);
 			
 			

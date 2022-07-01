@@ -32,5 +32,9 @@
 
 	</form>
 	
+	<div>
+		<a href="ProfilCreation"><button type="submit">Connexion</button></a>
+	
+	</div>
 </body>
 </html>

@@ -63,11 +63,18 @@
 		</c:if>	
 		
 		<c:if test = "${not empty listeArticleVendu}">
-			<c:forEach var="ArticleVendu" items="${listeArticleVendu}">
-				<p>Article en vente : ${ArticleVendu}<p>
-			</c:forEach>
+			<div>
+				<c:forEach var="ArticleVendu" items="${listeArticleVendu}">
+					<div>
+						<p>${ArticleVendu.nomArticle}</p>
+						<p>Prix : ${ArticleVendu.miseAPrix}<p>
+						<p>Fin de L'enchère: ${ArticleVendu.dateFinEncheres}<p>
+						<p>vendeur : </p>
+					</div>
+				</c:forEach>
+			</div>
 		</c:if>	
-		
+				
 		
 		</br>
 		</br>

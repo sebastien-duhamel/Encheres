@@ -26,7 +26,13 @@ public class UtilisateurManager {
     }
 
     public Utilisateur seConnecter(String identifiant, String motDePasse) throws BusinessException {
-	Utilisateur utilisateur = DAOFactory.getUtilisateurDAO().getUtilisateurbyPseudo(identifiant);
+    	Utilisateur utilisateur = null; 
+    	if(identifiant.contains("@")) {
+    		utilisateur = DAOFactory.getUtilisateurDAO().getUtilisateurbyEmail(identifiant);
+    	}else {
+    		utilisateur = DAOFactory.getUtilisateurDAO().getUtilisateurbyPseudo(identifiant);
+    	}
+
 
 	if (utilisateur == null || !motDePasse.equals(utilisateur.getMotDePasse())) {
 	    BusinessException businessException = new BusinessException();
@@ -60,6 +66,7 @@ public class UtilisateurManager {
 	}
 	return utilisateur;
     }
+   
 
     private void validerPseudo(Utilisateur utilisateur, BusinessException businessException) {
 	List<String> listePseudo = new ArrayList<>();
@@ -154,4 +161,6 @@ public class UtilisateurManager {
 	}
 
     }
+
+
 }

@@ -16,6 +16,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	
 	private static final String INSERT_UTILISATEURS = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String GET_USER_BY_PSEUDO ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where pseudo=? ;";
+	private static final String GET_USER_BY_EMAIL ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where email=? ;";
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
 	@Override
@@ -46,7 +47,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 					pstmt.setString(7, utilisateur.getCodePostal());
 					pstmt.setString(8, utilisateur.getVille());
 					pstmt.setString(9, utilisateur.getMotDePasse());
-					pstmt.setInt(10, utilisateur.getCredit());
+					pstmt.setInt(10, 0);
 					pstmt.setInt(11, 0);
 					pstmt.executeUpdate();
 					rs = pstmt.getGeneratedKeys();
@@ -78,10 +79,10 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		
 	}
 
-	@Override
-	public Utilisateur getUtilisateurbyPseudo(String identifiant) throws BusinessException {
+	
+	private Utilisateur getUtilisateurbyIdentifiant(String identifiant, String requete) throws BusinessException {
 		Utilisateur utilisateur = null;
-		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_USER_BY_PSEUDO)){
+		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(requete)){
 			pstmt.setString(1, identifiant);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()) {
@@ -100,6 +101,21 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		return utilisateur;
 	}
 
+
+	@Override
+	public Utilisateur getUtilisateurbyEmail(String identifiant) throws BusinessException {
+		// TODO Auto-generated method stub
+		return getUtilisateurbyIdentifiant(identifiant, GET_USER_BY_EMAIL);
+	}
+	
+
+	@Override
+	public Utilisateur getUtilisateurbyPseudo(String identifiant) throws BusinessException {
+		
+		return getUtilisateurbyIdentifiant(identifiant, GET_USER_BY_PSEUDO);
+	}
+
+	
 	@Override
 	public List<String> getListePseudo() throws BusinessException{
 	
@@ -154,5 +170,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		
 		return listeEmail;
 	}
+
 
 }

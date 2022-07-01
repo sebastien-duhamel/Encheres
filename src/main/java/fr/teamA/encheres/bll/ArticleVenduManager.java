@@ -33,6 +33,8 @@ public class ArticleVenduManager {
 	
 	public List<ArticleVendu> venteEnCours() throws BusinessException{
 		List<ArticleVendu> listeArticleVendu = DAOFactory.getArticleVenduDAO().afficherListeArticle();
+		//recuperer dans la liste artcile le no_utilisateur
+		
 		return listeArticleVendu;
 	}
 	
