@@ -3,6 +3,7 @@
 <%@page import="fr.teamA.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -22,38 +23,20 @@
 		
 
 	<div class="insertion">
-
-		<%
-		int ok = 0;
-		List<Integer> listeCodesErreur = (List<Integer>) request.getAttribute("listeCodesErreur");
-		if (listeCodesErreur != null) {
-			ok = 1;
-		%>
-		<p style="color: red;">Erreur, L'utilisateur n'a pas été ajouté :</p>
-		<%
-		for (int codeErreur : listeCodesErreur) {
-		%>
-		<p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
-		<%
-		}
-		}
-		%>
-
-		<%
-		Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
-		if (utilisateur != null) {
-		%>
-		<p
-			style="color: green; text-decoration: blink; background-color: yellow">l'utilisateur
-			a été ajouté :</p>
-
-		<%
-		}
-		%>
-		</br>
-		</br>
-		</div>
 		
+		<c:if test = "${not empty listeCodesErreur}">
+			<p style="color: red;">Erreur :</p>
+			
+			<c:forEach var="codeErreur" items="${listeCodesErreur}">
+				<p>${LecteurMessage.getMessageErreur(codeErreur)}
+			</c:forEach>
+			
+		</c:if>
+		
+		</br>
+		</br>
+		
+	</div>
 		
 		<form action="ProfilCreation" method="post">
 			<div class="container">
@@ -91,8 +74,10 @@
 			</div>
 			
 			</div>
+			
 			</br>
 			</br>
+			
 			<div class="container2">
 				<div class= "item2">
 				<input class="valider"type="submit" value="Valider" /> 

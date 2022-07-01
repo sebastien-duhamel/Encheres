@@ -47,10 +47,6 @@ public class ServletProfilCreation extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur = new ArrayList<>();
 		String verifMDP;
-	
-//		HttpSession session = request.getSession();
-//		session.setAttribute("sessionOK", session);
-//		Cookie[] cookies = request.getCookies();
 
 		try {
 			Utilisateur utilisateur = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
@@ -61,7 +57,9 @@ public class ServletProfilCreation extends HttpServlet {
 			verifMDP = request.getParameter("verifMDP");
 			
 			UtilisateurManager.getInstance().ajouterUtilisateur(utilisateur, verifMDP);
-			request.setAttribute("utilisateur", utilisateur);
+			request.getSession().setAttribute("utilisateur", utilisateur);
+			
+			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

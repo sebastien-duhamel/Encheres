@@ -1,53 +1,56 @@
 package fr.teamA.encheres.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import fr.teamA.encheres.BusinessException;
-import fr.teamA.encheres.bll.UtilisateurManager;
-import fr.teamA.encheres.bo.Utilisateur;
+import fr.teamA.encheres.bll.ArticleVenduManager;
+import fr.teamA.encheres.bo.ArticleVendu;
 
 /**
- * Servlet implementation class ServletSeConnecter
+ * Servlet implementation class ServletAcceuil
  */
-@WebServlet("/seconnecter")
-public class ServletSeConnecter extends HttpServlet {
+@WebServlet("/Acceuil")
+public class ServletAcceuil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	
-    public ServletSeConnecter() {
+
+    public ServletAcceuil() {
         super();
-       
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/jsp/seconnecter.jsp").forward(request, response);
+
+		try {
+			List<ArticleVendu> listeArticleVendu = ArticleVenduManager.getInstanceArticle().venteEnCours();
+				
+			request.setAttribute("listeArticleVendu", listeArticleVendu);
+			
+			
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
 		
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String identifiant = request.getParameter("identifiant");
-		String motDePasse = request.getParameter("motDePasse");
-		
-		try {
-			
-			Utilisateur utilisateur = UtilisateurManager.getInstance().seConnecter(identifiant, motDePasse);
-			response.sendRedirect("https://www.google.fr");
-		} catch (BusinessException e) {
-			
-			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());	
-			doGet(request, response);
-		}
+		String contient = request.getParameter("contient");
+		String categorie = request.getParameter("categorie");
+		doGet(request, response);
 	}
 
 }

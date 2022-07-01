@@ -20,7 +20,7 @@ public class UtilisateurManager {
 	if (instance == null) {
 	    instance = new UtilisateurManager();
 	}
-	System.out.println(instance.toString());
+	
 	return instance;
 
     }
@@ -67,17 +67,18 @@ public class UtilisateurManager {
 	try {
 	    listePseudo = DAOFactory.getUtilisateurDAO().getListePseudo();
 	} catch (BusinessException e) {
-	    // TODO Auto-generated catch block
+		businessException.ajouterErreur(CodesResultatBLL.REGLE_ERREUR_IMPREVU);
 	    e.printStackTrace();
 	}
 	if (utilisateur.getPseudo() == null || utilisateur.getPseudo().trim().equals("")
+		|| !utilisateur.getPseudo().chars().allMatch(Character::isLetterOrDigit) 
 		|| utilisateur.getPseudo().trim().length() > 30) {
 	    businessException.ajouterErreur(CodesResultatBLL.REGLE_FORMAT_PSEUDO_ERREUR);
 	}
 	if (listePseudo.contains(utilisateur.getPseudo())) {
 	    businessException.ajouterErreur(CodesResultatBLL.REGLE_PSEUDO_DEJA_EXISTANT);
 	}
-    }
+	}
 
     private void validerNom(Utilisateur utilisateur, BusinessException businessException) {
 	if (utilisateur.getNom() == null || utilisateur.getNom().trim().equals("")
@@ -98,8 +99,9 @@ public class UtilisateurManager {
 	try {
 	    listeEmail = DAOFactory.getUtilisateurDAO().getListeEmail();
 	} catch (BusinessException e) {
-	    // TODO Auto-generated catch block
+	    
 	    e.printStackTrace();
+	    businessException.ajouterErreur(CodesResultatBLL.REGLE_ERREUR_IMPREVU);
 	}
 	
 	if (utilisateur.getEmail() == null || utilisateur.getEmail().trim().equals("")

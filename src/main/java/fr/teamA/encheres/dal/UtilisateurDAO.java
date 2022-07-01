@@ -12,7 +12,8 @@ public interface UtilisateurDAO {
 
 	public Utilisateur getUtilisateurbyPseudo(String identifiant) throws BusinessException;
 
-	List<String> getListePseudo() throws BusinessException;
-	List<String> getListeEmail() throws BusinessException;
+	public List<String> getListePseudo() throws BusinessException;
+	
+	public List<String> getListeEmail() throws BusinessException;
 		
 }

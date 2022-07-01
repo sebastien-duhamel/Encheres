@@ -3,14 +3,22 @@ package fr.teamA.encheres.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.ArticleVendu;
+
 
 
 public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO{
 		
 		private static final String INSERT_ARTICLES_VENDUS = "insert into ARTICLESVENDUS(nomArticle,description,dateDebutEncheres,dateFinEncheres,miseAPrix,prixVente,etatVente) "
 				+ "values(?,?,?,?,?,?,?)";
+		private static final String GET_ARTICLE_EN_VENTE = "select no_article, nom_article, description,date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur from ARTICLES_VENDUS where GETDATE()>date_debut_encheres;";
+		
+		
 		
 		@Override
 		public void insert(ArticleVendu articleVendu) throws BusinessException {
@@ -67,7 +75,42 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO{
 			}
 			
 		}
-
+		
+		@Override
+		public List<ArticleVendu> afficherListeArticle() throws BusinessException{
+			
+			List<ArticleVendu> listeArticleVendu = new ArrayList<ArticleVendu>();
+//			LocalDate date = LocalDate.now();
+			
+			try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_ARTICLE_EN_VENTE)){
+				
+//				pstmt.setDate(1, java.sql.Date.valueOf(date));
+				
+				try(ResultSet rs = pstmt.executeQuery()){
+					ArticleVendu article;
+					
+//					if(rs.next()) {
+						while(rs.next()) {
+							article = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
+									rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(), 
+									rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"));
+							listeArticleVendu.add(article);
+						}
+//					}else {
+//						listeArticleVendu = null;
+//					}
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);//TODO modifier cette erreur
+				throw businessException;
+			}
+			
+			
+			return listeArticleVendu;
+		}
 
 	}
 

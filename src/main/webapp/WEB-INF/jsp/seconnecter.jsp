@@ -9,14 +9,19 @@
 <title>Se connecter</title>
 </head>
 <body>
+	<header>
+		<h2>Eni-Encheres</h2>
+	</header>
+	
 	<c:if test = "${not empty listeCodesErreur}">
 		
 		<p style="color: red;">Erreur :</p>
 		
 		<c:forEach var="codeErreur" items="${listeCodesErreur}">
-		<p>${LecteurMessage.getMessageErreur(codeErreur)}
+			<p>${LecteurMessage.getMessageErreur(codeErreur)}
 		</c:forEach>
-		</c:if>
+	</c:if>
+		
 	<form method="post">
 
 		<label for="identifiant">Mail ou pseudo</label> 
@@ -26,5 +31,6 @@
 		<button type="submit">Connexion</button>
 
 	</form>
+	
 </body>
 </html>

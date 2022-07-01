@@ -47,5 +47,7 @@ public abstract class CodesResultatBLL {
 	public static final int REGLE_PSEUDO_DEJA_EXISTANT = 20017;
 	
 	public static final int REGLE_EMAIL_EXISTANT = 20018;
+	
+	public static final int REGLE_ERREUR_IMPREVU = 20029;
 
 }

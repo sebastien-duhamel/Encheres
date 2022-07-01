@@ -1,48 +1,56 @@
 package fr.teamA.encheres.bll;
 
+import java.util.List;
+
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.ArticleVendu;
-import fr.teamA.encheres.dal.ArticleVenduDAO;
 import fr.teamA.encheres.dal.DAOFactory;
 
 
 public class ArticleVenduManager {
 
-
-	/*
-	 * @author Administrator
-	 *
-	 * Cette classe permet d'effectuer les traitements attendus sur la classe Avis
-	 */
-
-	private ArticleVenduDAO articleVenduDAO;
-
-	/**
-	 * Le constructeur permet d'initialiser la variable membre avisDAO pour
-	 * permettre une communication avec la base de données.
-	 */
-	public ArticleVenduManager() {
-		this.articleVenduDAO = DAOFactory.getArticleVenduDAO();
+//
+//	private ArticleVenduDAO articleVenduDAO;
+//
+//	
+//	public ArticleVenduManager() {
+//		this.articleVenduDAO = DAOFactory.getArticleVenduDAO();
+//	}
+	private static ArticleVenduManager instanceArticle;
+	
+	private ArticleVenduManager() {
+		super();
 	}
-
-	/**
-	 * @param description
-	 * @param note
-	 * @return un objet Avis en cas de succcès
-	 * @throws BusinessException
-	 */
+	
+	public static ArticleVenduManager getInstanceArticle() {
+		
+		if (instanceArticle == null) {
+			instanceArticle = new ArticleVenduManager();
+		}
+		
+		return instanceArticle;
+	}
+	
+	public List<ArticleVendu> venteEnCours() throws BusinessException{
+		List<ArticleVendu> listeArticleVendu = DAOFactory.getArticleVenduDAO().afficherListeArticle();
+		return listeArticleVendu;
+	}
+	
+	
+	
+	
 	public ArticleVendu ajouterArticleVendu(ArticleVendu articleVendu) throws BusinessException {
 		BusinessException exception = new BusinessException();
 
-		this.validerNomArticle(articleVendu, exception);
-		this.validerDescription(articleVendu, exception);
-		this.validerDateDebutEncheres(articleVendu, exception);
-		this.validerDateFinEncheres(articleVendu, exception);
-		this.validerMiseAPrix(articleVendu, exception);
+		validerNomArticle(articleVendu, exception);
+		validerDescription(articleVendu, exception);
+		validerDateDebutEncheres(articleVendu, exception);
+		validerDateFinEncheres(articleVendu, exception);
+		validerMiseAPrix(articleVendu, exception);
 		
 
 		if (!exception.hasErreurs()) {
-			this.articleVenduDAO.insert(articleVendu);
+			DAOFactory.getArticleVenduDAO().insert(articleVendu);
 		}
 
 		if (exception.hasErreurs()) {

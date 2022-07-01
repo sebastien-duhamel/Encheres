@@ -107,7 +107,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		try(Connection cnx = ConnectionProvider.getConnection();PreparedStatement pstmt=cnx.prepareStatement(GET_LIST_PSEUDO)){
 		
 			try(ResultSet rs = pstmt.executeQuery()){
-		
 				
 					while(rs.next()) {
 						String pseudo =null;
@@ -115,7 +114,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 						listePseudo.add(pseudo);
 				
 					}
-				
 			}
 			
 		} catch (SQLException e) {
@@ -138,14 +136,12 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		
 			try(ResultSet rs = pstmt.executeQuery()){
 		
-				
 					while(rs.next()) {
 						String email =null;
 						email = rs.getString("email");
 						listeEmail.add(email);
 				
 					}
-				
 			}
 			
 		} catch (SQLException e) {
