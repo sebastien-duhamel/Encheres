@@ -30,20 +30,25 @@
 			</c:if>
 		</div>
 	
-	<section id="principale">
-	<form method="post">
-
-		<label for="identifiant">Mail ou pseudo</label> 
-		<input type="text"id="identifiant" name="identifiant" /> 
-		<label for="motDePasse">Mot	de passe</label> 
-		<input type="password" id="motDePasse" name="motDePasse" />
-		<button type="submit">Connexion</button>
-
-	</form>
-	</section>
-	<div id="creer">
-		<a href="ProfilCreation"><button type="submit">Créer un compte</button></a>
+	<div class="principale">
+		<form method="post" class="formulaire">
+			<div class="item">
+				<label for="identifiant" class="champs">Identifiant :</label> 
+				<input type="text"id="identifiant" name="identifiant" placeholder="email ou pseudo"/> 
+			</div>
+			<div class="item">
+				<label for="motDePasse" class="champs">Mot	de passe :</label> 
+				<input type="password" id="motDePasse" name="motDePasse" />
+			</div>
+			<button type="submit">Connexion</button>
 	
+		</form>
+		
+		<div id="creer">
+			<a href="ProfilCreation"><button type="submit">Créer un compte</button></a>
+		
+		</div>
+		
 	</div>
 </body>
 </html>

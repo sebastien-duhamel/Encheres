@@ -3,7 +3,6 @@ package fr.teamA.encheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.Utilisateur;
@@ -199,7 +198,7 @@ public class UtilisateurManager {
     	validerMotDePasse(utilisateur, verifMDP, exception);
 
     	if (!exception.hasErreurs()) {
-    	    DAOFactory.getUtilisateurDAO().insert(utilisateur);
+    	    DAOFactory.getUtilisateurDAO().update(utilisateur);
     	}
 
     	if (exception.hasErreurs()) {

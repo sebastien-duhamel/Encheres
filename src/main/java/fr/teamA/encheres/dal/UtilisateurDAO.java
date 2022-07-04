@@ -19,5 +19,9 @@ public interface UtilisateurDAO {
 	public Utilisateur getUtilisateurbyEmail(String identifiant) throws BusinessException;
 
 	public List<Utilisateur> getListeUtilisateurbyPseudo()throws BusinessException;
+	
+	//04-07-2022 ariane
+		public void update(Utilisateur utilisateur) throws BusinessException;
+
 		
 }

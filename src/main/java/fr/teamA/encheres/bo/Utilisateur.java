@@ -66,7 +66,6 @@ public class Utilisateur implements Serializable {
 	
 	
 	
-
 	public String getPseudo() {
 		return pseudo;
 	}
