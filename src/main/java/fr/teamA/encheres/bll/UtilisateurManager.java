@@ -163,4 +163,28 @@ public class UtilisateurManager {
     }
 
 
+    //Modifier un utilisateur
+    
+    public Utilisateur modifierUtilisateur (Utilisateur utilisateur, String verifMDP) throws BusinessException {
+    	BusinessException exception = new BusinessException();
+    	
+    	validerPseudo(utilisateur, exception);
+    	validerNom(utilisateur, exception);
+    	validerPrenom(utilisateur, exception);
+    	validerEmail(utilisateur, exception);
+    	validerTelephone(utilisateur, exception);
+    	validerRue(utilisateur, exception);
+    	validerCodePostal(utilisateur, exception);
+    	validerVille(utilisateur, exception);
+    	validerMotDePasse(utilisateur, verifMDP, exception);
+
+    	if (!exception.hasErreurs()) {
+    	    DAOFactory.getUtilisateurDAO().insert(utilisateur);
+    	}
+
+    	if (exception.hasErreurs()) {
+    	    throw exception;
+    	}
+    	return utilisateur;
+        }
 }

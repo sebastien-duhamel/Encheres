@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String GET_USER_BY_ID ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where no_utilisateur=? ;";
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
+	private static final String UPDATE_UTILISATEURS = "update UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, from utilisateurs where no_utilisateur=? ;";
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
 		if(utilisateur==null)
@@ -80,6 +80,75 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		}
 		
 	}
+	
+
+	//Modifier informations utilisateur
+	
+
+	@SuppressWarnings("unused")
+	@Override
+	public void update(Utilisateur utilisateur) throws BusinessException {
+			if (utilisateur == null)
+		{
+		BusinessException businessException = new BusinessException();
+					businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_NULL);
+					throw businessException;
+				}
+			try(Connection cnx = ConnectionProvider.getConnection())
+			{
+				try
+				{
+					cnx.setAutoCommit(false);
+					PreparedStatement pstmt;
+					ResultSet rs;
+					if(utilisateur.getNoUtilisateur()!=0)
+						{
+				try { 
+					PreparedStatement utilisateurUpdate = cnx.prepareStatement(UPDATE_UTILISATEURS , PreparedStatement.RETURN_GENERATED_KEYS);
+		 
+					utilisateurUpdate.setString(1, utilisateur.getPseudo());		 
+					utilisateurUpdate.setString(2, utilisateur.getNom());		 
+					utilisateurUpdate.setString(3, utilisateur.getPrenom());		 
+					utilisateurUpdate.setString(4, utilisateur.getEmail());		 
+					utilisateurUpdate.setString(5, utilisateur.getTelephone());		 
+					utilisateurUpdate.setString(6, utilisateur.getRue());					
+					utilisateurUpdate.setString(7, utilisateur.getCodePostal());					
+					utilisateurUpdate.setString(8, utilisateur.getVille());					
+					utilisateurUpdate.setString(9, utilisateur.getMotDePasse());
+					
+					utilisateurUpdate.executeUpdate();
+					
+					rs = utilisateurUpdate.getGeneratedKeys();
+					if(rs.next())
+					{
+						utilisateur.setNoUtilisateur(rs.getInt(1));
+					
+					rs.close();
+					utilisateurUpdate.close();
+								 
+						}
+					
+					cnx.commit();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					cnx.rollback();
+					throw e;
+				}
+			}}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_ECHEC);
+				throw businessException;
+			}} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 
 	
 	private Utilisateur getUtilisateurbyIdentifiant(String identifiant, String requete) throws BusinessException {
@@ -194,8 +263,12 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 			throw businessException;
 		}
 		
-		return listeEmail;
+		return listeEmail;	
 	}
 
+
+			
+	
+	
 
 }
