@@ -5,7 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="ressources/css/styleSeConnecter.css" rel="stylesheet">
+  
 <title>Se connecter</title>
 </head>
 <body>
@@ -13,15 +19,18 @@
 		<h2>Eni-Encheres</h2>
 	</header>
 	
-	<c:if test = "${not empty listeCodesErreur}">
-		
-		<p style="color: red;">Erreur :</p>
-		
-		<c:forEach var="codeErreur" items="${listeCodesErreur}">
-			<p>${LecteurMessage.getMessageErreur(codeErreur)}
-		</c:forEach>
-	</c:if>
-		
+		<div id="erreur">
+			<c:if test = "${not empty listeCodesErreur}">
+				
+				<p style="color: red;">Erreur :</p>
+				
+				<c:forEach var="codeErreur" items="${listeCodesErreur}">
+					<p>${LecteurMessage.getMessageErreur(codeErreur)}
+				</c:forEach>
+			</c:if>
+		</div>
+	
+	<section id="principale">
 	<form method="post">
 
 		<label for="identifiant">Mail ou pseudo</label> 
@@ -31,9 +40,9 @@
 		<button type="submit">Connexion</button>
 
 	</form>
-	
-	<div>
-		<a href="ProfilCreation"><button type="submit">Connexion</button></a>
+	</section>
+	<div id="creer">
+		<a href="ProfilCreation"><button type="submit">Créer un compte</button></a>
 	
 	</div>
 </body>

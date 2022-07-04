@@ -16,13 +16,16 @@ public class Utilisateur implements Serializable {
 	private String codePostal;
 	private String ville;
 	private String motDePasse;
-	private int credit;
+	private int credit = 0;
 	private int administrateur = 0;
 	
 	public Utilisateur() {
 		super();
 	}
-
+	
+/*
+ * constructeur d'bjet utilisateur sans numero d'utilisateur
+ */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, int administrateur) {
 		super();
@@ -40,6 +43,9 @@ public class Utilisateur implements Serializable {
 		this.administrateur = administrateur;
 	}
 
+	/*
+	 * construcetr d'objet utilisateur complet
+	 */
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, int administrateur) {
 		super();

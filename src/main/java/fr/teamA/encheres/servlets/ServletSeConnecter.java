@@ -42,7 +42,7 @@ public class ServletSeConnecter extends HttpServlet {
 		try {
 			Utilisateur utilisateur = UtilisateurManager.getInstance().seConnecter(identifiant, motDePasse);
 			request.getSession().setAttribute("utilsateur", utilisateur);
-			response.sendRedirect("https://www.google.fr");
+			response.sendRedirect("Accueil");
 		} catch (BusinessException e) {
 			
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());	

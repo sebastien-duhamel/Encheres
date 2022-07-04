@@ -1,6 +1,8 @@
 package fr.teamA.encheres.filters;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class AccueilFilter
  */
-@WebFilter("/AccueilFilter")
+@WebFilter("/")
 public class AccueilFilter extends HttpFilter implements Filter {
        
     /**
@@ -42,19 +44,17 @@ public class AccueilFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-
-		if(!httpRequest.getServletPath().isBlank())
-		{
-			//Laissons passer la requête vers là où elle doit aller
-			chain.doFilter(request, response);
-		}
-		else
-		{
-			//Renvoyons une 403 à l'utilisateur
-			HttpServletResponse httpResponse = (HttpServletResponse) response;
-			httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-		}
+		
+		int content = request.getContentLength();
+		System.out.println(content);
+		
+		String url = ((HttpServletRequest) request).getRequestURL().toString();
+		String url2 = ((HttpServletRequest) request).getPathInfo();
+		System.out.println("Incomming URL = " + url);
+		System.out.println(url2);
+		
+		((HttpServletResponse) response).sendRedirect("Accueil");
+		System.out.println("passage dans le filtre");
 	}
 
 

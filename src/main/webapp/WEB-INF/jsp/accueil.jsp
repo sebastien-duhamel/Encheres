@@ -12,7 +12,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="ressources/css/styleAccueil.css" rel="stylesheet">
+  <link href="ressources/css/styleAccueil2.css" rel="stylesheet">
     <title>Accueil</title>
 </head>
 <body>
@@ -22,7 +22,14 @@
 					<h2>Eni-Encheres</h2>
 				</div>
 				<div class="navItem">
-					<a href="seconnecter">S'incrire - Se connecter</a>
+				<c:choose>
+					<c:when test="${utilsateur!=null}">
+						<jsp:include page="/WEB-INF/fragments/fragmentConnecter.jsp"></jsp:include>
+					</c:when>
+					<c:otherwise>
+						<jsp:include page="/WEB-INF/fragments/fragmentNonConnecter.jsp"></jsp:include>
+					</c:otherwise>
+				</c:choose>					
 				</div>
 				
 			</nav>
@@ -30,51 +37,65 @@
 		<h3>Liste des enchères</h3>
 		
 
-	<section>
+	<section class="centrale">
 	
-		<form action="Accueil" method="post">
-			<div class="container">
+		<form action="Accueil" method="post" class="formulaire">
+	<!-- 		<div class="container2">	 -->
 				<div class="item">
-					<label for="contient">Filtres : </label> <input type="text" name="contient" id ="contient">
-				</div>
-				<div class="item">
-					<label for="categorie">Catégorie : </label> 
-					<select id="categorie" name="categorie">
-						<option>Toutes
-						<option>Informatique
-						<option>Ameublement
-						<option>Vêtement
-						<option>Sport&Loisirs
-					</select>
-				</div>
-				<div>
-					<div class= "item2">
-						<input class="valider"type="submit" value="Rechercher" /> 
+					<div id="filtres">
+						<div><label for="contient">Filtres : </label> </div>
+						<div><input type="text" name="contient" id ="contient" placeholder="&#x1F50D; Le nom de l'article contient"></div>
+						<div>
+							<label for="categorie" id="categorie">Catégorie : </label> 
+							<select name="categorie">
+								<option>Toutes
+								<option>Informatique
+								<option>Ameublement
+								<option>Vêtement
+								<option>Sport&Loisirs
+							</select>
+						</div>
 					</div>
 				</div>
+				
+					<div class= "item">
+						<input id="rechercher"type="submit" value="Rechercher" />
+					</div>
 			
-			</div>
+			
+	<!-- 	</div>		 -->	
 		
 		</form>
 		
-		<c:if test = "${empty listeArticleVendu}">
-			<p >Il n'y a pas d'enchère en cours, vous n'avez pas quelque chose à proposer à la vente?</p>
-			
-		</c:if>	
-		
-		<c:if test = "${not empty listeArticleVendu}">
-			<div>
-				<c:forEach var="ArticleVendu" items="${listeArticleVendu}">
-					<div>
-						<p>${ArticleVendu.nomArticle}</p>
-						<p>Prix : ${ArticleVendu.miseAPrix}<p>
-						<p>Fin de L'enchère: ${ArticleVendu.dateFinEncheres}<p>
-						<p>vendeur : </p>
-					</div>
-				</c:forEach>
-			</div>
-		</c:if>	
+		<div id="vide">
+		<br>
+			<c:if test = "${empty listeArticleVendu}">
+				<p >Il n'y a pas d'enchère en cours, vous n'avez pas quelque chose à proposer à la vente?</p>
 				
+			</c:if>	
+		</div>
+			
+		<div id="liste">
+			
+			<c:if test = "${not empty listeArticleVendu}">
+				
+					<c:forEach var="ArticleVendu" items="${listeArticleVendu}">
+						<div class="articles">
+							<div id="img">
+								<img src="ressources/unArticle.png"/>
+							</div>
+							<div>
+								<p>${ArticleVendu.nomArticle}</p>
+								<p>Prix : ${ArticleVendu.miseAPrix}</p>
+								<p>Fin de L'enchère: ${ArticleVendu.dateFinEncheres}</p>
+								<p>vendeur : ${ArticleVendu.vendeur.pseudo }</p>
+							</div>
+						</div>
+					</c:forEach>
+				
+			</c:if>	
+			
+		</div>		
 		
 		</br>
 		</br>
