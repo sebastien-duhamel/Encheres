@@ -1,5 +1,6 @@
 package fr.teamA.encheres.dal;
 
+
 import java.util.List;
 
 import fr.teamA.encheres.BusinessException;
@@ -17,7 +18,13 @@ public interface UtilisateurDAO {
 	public List<String> getListeEmail() throws BusinessException;
 
 	public Utilisateur getUtilisateurbyEmail(String identifiant) throws BusinessException;
+<<<<<<< HEAD
 
 	public List<Utilisateur> getListeUtilisateurbyPseudo()throws BusinessException;
+=======
+	
+//04-07-2022 ariane
+	public void update(Utilisateur utilisateur) throws BusinessException;
+>>>>>>> branch 'main' of https://github.com/sebastien-duhamel/Encheres.git
 		
 }
