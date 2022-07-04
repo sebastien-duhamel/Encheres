@@ -56,6 +56,8 @@ public abstract class CodesResultatDAL {
 	public static final int INSERT_ARTICLES_VENDUS_ECHEC= 10012;
 
 	public static final int SELECT_LISTE_PSEUDO_ECHEC_BDD= 10013;
+
+	public static final int SELECT_LISTE_UTILISATEUR_ECHEC = 10014;
 }
 
 

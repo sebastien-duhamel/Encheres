@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String GET_USER_BY_ID ="select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs where no_utilisateur=? ;";
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
+	private static final String GET_LIST_UTILISATEUR = "select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs ;";
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
 		if(utilisateur==null)
@@ -195,6 +196,32 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		}
 		
 		return listeEmail;
+	}
+
+
+	@Override
+	public List<Utilisateur> getListeUtilisateurbyPseudo() throws BusinessException {
+		List<Utilisateur> listeUtilisateur = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection();Statement stmt=cnx.createStatement()){
+		
+			try(ResultSet rs = stmt.executeQuery(GET_LIST_UTILISATEUR)){
+				
+					while(rs.next()) {
+						Utilisateur utilisateur = new Utilisateur(rs.getInt("no_Utilisateur"), rs.getString("pseudo"), rs.getString("nom"), 
+								rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), 
+								rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getInt("administrateur"));
+						listeUtilisateur.add(utilisateur);	
+					}
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_UTILISATEUR_ECHEC);
+			throw businessException;
+		}
+		return listeUtilisateur;
 	}
 
 
