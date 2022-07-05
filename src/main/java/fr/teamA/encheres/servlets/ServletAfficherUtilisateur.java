@@ -2,6 +2,7 @@ package fr.teamA.encheres.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,35 +30,33 @@ public class ServletAfficherUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.getRequestDispatcher("WEB-INF/jsp/AfficherUtilisateur.jsp").forward(request, response);
-		
-//		Utilisateur utilisateur = (Utilisateur) response.("utilisateur");
-//		System.out.println(utilisateur.getPseudo());
-//		try {
-//			
-//			UtilisateurManager.getInstance().afficherUtilisateur(utilisateur.getPseudo());
-//			//request.setAttribute("utilisateur", utilisateur);
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//		}
-		
 		request.getRequestDispatcher("WEB-INF/jsp/AfficherUtilisateur.jsp").forward(request, response);
-		//doPost(request, response);
+	//	doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		
+//		String pseudo = (String)request.getSession().getAttribute("MonPseudo");
 		
 //		try {
-//			Utilisateur utilisateur = UtilisateurManager.getInstance().afficherUtilisateur("leboss");
+//			
+//			Utilisateur utilisateur = UtilisateurManager.getInstance().afficherUtilisateur(pseudo);
+//			System.out.println(utilisateur.toString());
 //			request.setAttribute("utilisateur", utilisateur);
+//			
 //		} catch (BusinessException e) {
 //			e.printStackTrace();
 //		}
-		
-		request.getRequestDispatcher("WEB-INF/jsp/AfficherUtilisateur.jsp").forward(request, response);
+//		
+//		request.getRequestDispatcher("WEB-INF/jsp/AfficherUtilisateur.jsp").forward(request, response);
+		doGet(request, response);
 	}
+		
+		
+	
 
 }

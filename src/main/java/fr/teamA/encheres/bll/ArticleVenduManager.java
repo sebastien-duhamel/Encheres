@@ -38,7 +38,36 @@ public class ArticleVenduManager {
 		return listeArticleVendu;
 	}
 	
-	
+	public List<ArticleVendu> venteEnCoursFiltre(String contient, String categorie) throws BusinessException{
+		int noCategorie=0;
+		
+		switch(categorie) {
+		
+		case "Informatique":
+			noCategorie = 1;break;
+		case "Ameublement":
+			noCategorie = 2;break;
+		case "Vêtement":
+			noCategorie = 3;break;
+		case "Sport&Loisirs":
+			noCategorie = 4;break;
+		default:
+			noCategorie=0;break;
+			
+		}
+		
+		if(contient==null || contient.trim().equals("")) {
+			contient = "%%";
+		}
+		else {
+			contient = "%"+contient+"%";
+		}
+		
+				List<ArticleVendu> listeArticleEnVenteFiltre = DAOFactory.getArticleVenduDAO().afficherListeArticleFiltre(contient, noCategorie);
+		//recuperer dans la liste artcile le no_utilisateur
+		
+		return listeArticleEnVenteFiltre;
+	}
 	
 	
 	public ArticleVendu ajouterArticleVendu(ArticleVendu articleVendu) throws BusinessException {

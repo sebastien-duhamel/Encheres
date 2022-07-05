@@ -11,6 +11,8 @@ public interface ArticleVenduDAO {
 		public void insert(ArticleVendu articleVendu) throws BusinessException;
 		
 		public List<ArticleVendu>afficherListeArticle() throws BusinessException;
+
+		List<ArticleVendu> afficherListeArticleFiltre(String contient, int categorie) throws BusinessException;
 	}
 
 

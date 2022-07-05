@@ -14,14 +14,19 @@ public class ArticleVendu implements Serializable {
 	private LocalDate dateFinEncheres;
 	private int miseAPrix = 0;
 	private int prixVente = 0;
-	private int etatVente;
+//	private int etatVente;
 	private Utilisateur vendeur;
+	private int noCategorie;
+	
+	
 	public ArticleVendu() {
 		super();
 	}
 
+//	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+//			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur) {
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur) {
+			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -29,12 +34,13 @@ public class ArticleVendu implements Serializable {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
+//		this.etatVente = etatVente;
 		this.vendeur = vendeur;
+		this.noCategorie = noCategorie;
 	}
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur vendeur ) {
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur vendeur,int noCategorie ) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -43,8 +49,9 @@ public class ArticleVendu implements Serializable {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
+//		this.etatVente = etatVente;
 		this.vendeur = vendeur;
+		this.noCategorie = noCategorie;
 	}
 
 	
@@ -104,13 +111,13 @@ public class ArticleVendu implements Serializable {
 		this.prixVente = prixVente;
 	}
 
-	public int getEtatVente() {
-		return etatVente;
-	}
-
-	public void setEtatVente(int etatVente) {
-		this.etatVente = etatVente;
-	}
+//	public int getEtatVente() {
+//		return etatVente;
+//	}
+//
+//	public void setEtatVente(int etatVente) {
+//		this.etatVente = etatVente;
+//	}
 
 	public int getNoArticle() {
 		return noArticle;
@@ -118,14 +125,30 @@ public class ArticleVendu implements Serializable {
 	
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
-	}	
+	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
 
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
-	}
+				+ miseAPrix + ", prixVente=" + prixVente + ", vendeur=" + vendeur + ", noCategorie=" + noCategorie
+				+ "]";
+	}	
+
+//	@Override
+//	public String toString() {
+//		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+//				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
+//				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
+//	}
 
 	
 	

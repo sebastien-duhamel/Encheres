@@ -18,7 +18,7 @@ import fr.teamA.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ServletProfilModification
  */
-@WebServlet("/ServletProfilModification")
+@WebServlet("/ProfilModification")
 public class ServletProfilModification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

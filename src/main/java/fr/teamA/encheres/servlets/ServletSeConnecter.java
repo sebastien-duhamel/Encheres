@@ -41,8 +41,10 @@ public class ServletSeConnecter extends HttpServlet {
 		
 		try {
 			Utilisateur utilisateur = UtilisateurManager.getInstance().seConnecter(identifiant, motDePasse);
-			request.getSession().setAttribute("utilsateur", utilisateur);
-			response.sendRedirect("Accueil");
+			
+			request.getSession().setAttribute("utilisateur", utilisateur);
+//			request.getSession().setAttribute("MonPseudo", utilisateur.getPseudo());
+			response.sendRedirect("AccueilFiltreDeconnection");
 		} catch (BusinessException e) {
 			
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());	

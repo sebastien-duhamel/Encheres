@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="fr.teamA.encheres.messages.LecteurMessage"%>
+<%@page import="java.util.List"%>
+<%@page import="fr.teamA.encheres.bo.Utilisateur"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+
 
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
+    <title>Profil</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -57,7 +59,7 @@
                             <div class="px-2">
                                 <h6 class="mb-0">Pseudo</h6>
                             </div>
-                            <p class="mb-0">${utilisateur.getPseudo()}</p>
+                            <p class="mb-0">${utilisateur.getPseudo()} ton pseudo</p>
                         </div>
                         <div class="d-flex align-items-center p-3" style="height: 20px;">
                             <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-circle text-primary">
