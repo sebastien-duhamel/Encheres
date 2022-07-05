@@ -39,7 +39,7 @@
 
 	<section class="centrale">
 	
-		<form action="AccueilFiltreDeconnection" method="post" class="formulaire">
+		<form action="Accueil" method="post" class="formulaire">
 	<!-- 		<div class="container2">	 -->
 				<div class="item">
 					<div id="filtres">
