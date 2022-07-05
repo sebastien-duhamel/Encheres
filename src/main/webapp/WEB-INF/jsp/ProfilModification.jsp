@@ -40,67 +40,67 @@
 		
 		<form action="ProfilCreation" method="post">
 			<div class="container">
+				<div class="item">
+					<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo" value ="${utilisateur.pseudo}">
+					
+				</div>
+				<div class="item">
+					<label for="nom">Nom: </label> <input type="text" name="nom" id ="nom" value ="${utilisateur.nom}">
+					
+				</div>
+				<div class="item">
+					<label for="prenom">Prenom : </label> <input type="text" name="prenom" id="prenom" value ="${utilisateur.prenom}" />
+				</div>
+				<div class="item">
+					<label for="email">Email : </label> <input type="email" name="email" id="email" value ="${utilisateur.email}">
+				</div>
+				<div class="item">
+					<label for="telephone"> Telephone : </label> <input type="text"	name="telephone" id="telephone" value ="${utilisateur.telephone}">
+				</div>
+				<div class="item">
+					<label for="rue">Rue : </label> <input type="text" name="rue" id="rue" value ="${utilisateur.rue}">
+				</div>
+				<div class="item">
+					<label for="code_postal"> Code postal : </label> <input type="text"	name="code_postal" id="code_postal" value ="${utilisateur.codePostal}">
+				</div>
+				<div class="item">
+					<label for="ville">Ville : </label> <input type="text" name="ville" id="ville" value ="${utilisateur.ville}">
+				</div>
+				<div class="item">
+					<label for="motDePasse">Mot de passe actuel : </label> <input type="password" name="motDePasse" id="motDePass" value ="${utilisateur.motDePasse}">
+				</div>
+				<div class="item">
+					<label for="motDePasse">Nouveau Mot de passe : </label> <input type="password" name="motDePasse" id="motDePass">
+				</div>
+				<div class="item">
+					<label for="verifMDP">Confirmation : </label> <input type="password" name="verifMDP" id="verifMDP">
+				</div>
+			
 			<div class="item">
-				<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo" value ="${param.pseudo}">
-				
+				<label for="credit">Crédit : </label> <output type="number" name="credit" id="credit" value ="${utilisateur.credit}">
 			</div>
-			<div class="item">
-				<label for="nom">Nom: </label> <input type="text" name="nom" id ="nom" value ="${param.nom}">
-				
-			</div>
-			<div class="item">
-				<label for="prenom">Prenom : </label> <input type="text" name="prenom" id="prenom" value ="${param.prenom}" />
-			</div>
-			<div class="item">
-				<label for="email">Email : </label> <input type="email" name="email" id="email" value ="${param.email}">
-			</div>
-			<div class="item">
-				<label for="telephone"> Telephone : </label> <input type="text"	name="telephone" id="telephone" value ="${param.telephone}">
-			</div>
-			<div class="item">
-				<label for="rue">Rue : </label> <input type="text" name="rue" id="rue" value ="${param.rue}">
-			</div>
-			<div class="item">
-				<label for="code_postal"> Code postal : </label> <input type="text"	name="code_postal" id="code_postal" value ="${param.code_postal}">
-			</div>
-			<div class="item">
-				<label for="ville">Ville : </label> <input type="text" name="ville" id="ville" value ="${param.ville}">
-			</div>
-			<div class="item">
-				<label for="motDePasse">Mot de passe actuel : </label> <input type="password" name="motDePasse" id="motDePass">
-			</div>
-			<div class="item">
-				<label for="motDePasse">Nouveau Mot de passe : </label> <input type="password" name="motDePasse" id="motDePass">
-			</div>
-			<div class="item">
-				<label for="verifMDP">Confirmation : </label> <input type="password" name="verifMDP" id="verifMDP">
-			</div>
-			<div class="item">
-				<label for="credit">Crédit : </label> <output type="number" name="credit" id="credit">
 			</div>
 			
-			</div>
 			
 			</br>
 			</br>
 			
 			<div class="container2">
 				<div class= "item2">
-				<input class="valider"type="submit" value="Enregistrer" /> 
+				<input id="enregistrer"type="submit" value="Enregistrer" /> 
 				</div>
-				
-				<div class= "item2" >
-				<input class="valider"type="submit" value="Supprimer mon compte" /> 
-				</div>
-				
+				<c:if test = "${utilisateur!=null}">
+					<div class= "item2" >
+						<input id="supprimer"type="submit" value="Supprimer mon compte" /> 
+					</div>
+				</c:if>
 				<div class= "item2">
 				<a href="<%=request.getContextPath()%>">
-				<input class="valider" type="reset" value="Annuler" /></a>
+				<input id="annuler" type="reset" value="Annuler" /></a>
 				</div>
 			</div>
 				
 		</form>
-		<div class="item3">test test tesrt</div>
 
 
 </body>

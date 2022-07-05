@@ -41,7 +41,7 @@
 		<form action="ProfilCreation" method="post">
 			<div class="container">
 			<div class="item">
-				<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo">
+				<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo" />
 				
 			</div>
 			<div class="item">
@@ -83,7 +83,7 @@
 				<input class="valider"type="submit" value="Valider" /> 
 				</div>
 				<div class= "item2">
-				<a href="<%=request.getContextPath()%>">
+				<a href="Accueil">
 				<input class="valider" type="reset" value="Annuler" /></a>
 				</div>
 			</div>

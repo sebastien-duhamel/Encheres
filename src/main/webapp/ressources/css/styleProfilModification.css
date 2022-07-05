@@ -36,25 +36,71 @@ label{
 .container2 {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+
   align-items: center;
+  border : solid;
  
 }
 .item2{
 
-  margin-left: 4vw;
-  margin-right: 4vw;
+
   text-align: center;
 margin-bottom: 10px;
 margin-top: 10px;
 }
 
-.valider{
+#enregistrer{
 	height: 8vh;
 	width: 15vw;
 }
 
-.item3{
-	background-color: green;;
+#supprimer{
+	height: 8vh;
+	width: 160px;
 }
+
+#annuler{
+	height: 8vh;
+	width: 15vw;
+}
+@media screen and (max-width : 500px) {
+
+	.container2 {
+  display: flex;
+  flex-direction: row;
+ 
+  justify-content: space-around;
+  align-items: center;
+  border : solid;
+ 
+}
+	
+	
+.item2{
+
+ 
+  text-align: center;
+margin-bottom: 10px;
+margin-top: 10px;
+}
+
+#enregistrer{
+	height: 8vh;
+	width: 80px;
+}
+
+#supprimer{
+	height: 8vh;
+	width: 160px;
+}
+
+#annuler{
+	height: 8vh;
+	width: 80px;
+}
+
+
+}
+
+
