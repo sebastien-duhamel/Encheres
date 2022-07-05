@@ -206,4 +206,32 @@ public class UtilisateurManager {
     	}
     	return utilisateur;
         }
-}
+
+
+	//supprimer un utilisateur
+
+    public Utilisateur supprimerUtilisateur(Utilisateur utilisateur) throws BusinessException {
+		BusinessException exception = new BusinessException();
+
+		if (!exception.hasErreurs()) {
+			// this.utilisateurDAO.insert(utilisateur);
+			DAOFactory.getUtilisateurDAO().delete(utilisateur);
+		}
+
+		if (exception.hasErreurs()) {
+			throw exception;
+		}
+		return utilisateur;
+	}
+
+	
+		
+	}	
+
+
+
+
+
+
+
+

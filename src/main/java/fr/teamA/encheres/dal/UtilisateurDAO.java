@@ -23,5 +23,8 @@ public interface UtilisateurDAO {
 	//04-07-2022 ariane
 		public void update(Utilisateur utilisateur) throws BusinessException;
 
+	//05-07-2022 ariane	
+		public void delete(Utilisateur utilisateur) throws BusinessException;
+
 		
 }

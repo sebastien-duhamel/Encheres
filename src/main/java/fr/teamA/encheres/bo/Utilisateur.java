@@ -16,7 +16,6 @@ public class Utilisateur implements Serializable {
 	private String codePostal;
 	private String ville;
 	private String motDePasse;
-	//private String newMotDePasse;
 	private int credit = 0;
 	private int administrateur = 0;
 	
@@ -42,6 +41,7 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+	
 	}
 
 	/*
@@ -62,6 +62,7 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		
 	}
 	
 	
@@ -155,14 +156,7 @@ public class Utilisateur implements Serializable {
 	}
 	
 	
-
-	//public String getNewMotDePasse() {
-	//	return newMotDePasse;
-	//}
-
-	//public void setNewMotDePasse(String newMotDePasse) {
-	//	this.newMotDePasse = newMotDePasse;
-	//}
+	
 
 	@Override
 	public String toString() {
@@ -171,6 +165,9 @@ public class Utilisateur implements Serializable {
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
 	}
+
+	
+
 
 	
 	

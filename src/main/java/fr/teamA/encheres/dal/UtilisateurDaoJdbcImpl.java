@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.teamA.encheres.BusinessException;
+import fr.teamA.encheres.bo.ArticleVendu;
 import fr.teamA.encheres.bo.Utilisateur;
 
 
@@ -23,6 +25,8 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
 	private static final String GET_LIST_UTILISATEUR = "select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs ;";
 	private static final String UPDATE_UTILISATEURS = "update UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, from utilisateurs where no_utilisateur=? ;";
+	private static final String DELETE_UTILISATEURS = "delete from UTILISATEURS where noUtilisateur=?";
+	//private static final String DELETE_ARTICLE_VENDU = "delete from ARTICLES_VENDUS(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, prixVente, etatVente, vendeur) values(?,?,?,?,?,?,?,?,?,?);";
 	
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
@@ -145,7 +149,49 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 				businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_ECHEC);
 				throw businessException;
 			}} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	
+	
+	//Supprimer utilisateur
+	
+	@SuppressWarnings("unused")
+	@Override
+public void delete(Utilisateur utilisateur) throws BusinessException {
+				
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			try
+			{
+				cnx.setAutoCommit(false);
+				PreparedStatement pstmt;
+				ResultSet rs;
+			
+					try { 
+							if(utilisateur.getNoUtilisateur()!=0)
+						
+						{
+							pstmt = cnx.prepareStatement(DELETE_UTILISATEURS , PreparedStatement.RETURN_GENERATED_KEYS);
+							pstmt.setInt(2, utilisateur.getNoUtilisateur());
+							pstmt.executeUpdate();
+							rs=pstmt.getGeneratedKeys();
+						}
+					} catch (Exception e) {
+					
+						e.printStackTrace();
+					}
+					
+			}
+						catch(Exception e)
+			{
+				e.printStackTrace();
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR_ECHEC);
+				throw businessException;
+			}} catch (SQLException e) {
+				
 				e.printStackTrace();
 			}
 			
