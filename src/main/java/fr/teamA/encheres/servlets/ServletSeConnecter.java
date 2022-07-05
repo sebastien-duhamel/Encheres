@@ -44,7 +44,7 @@ public class ServletSeConnecter extends HttpServlet {
 			
 			request.getSession().setAttribute("utilisateur", utilisateur);
 //			request.getSession().setAttribute("MonPseudo", utilisateur.getPseudo());
-			response.sendRedirect("AccueilFiltreDeconnection");
+			response.sendRedirect("Accueil");
 		} catch (BusinessException e) {
 			
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());	

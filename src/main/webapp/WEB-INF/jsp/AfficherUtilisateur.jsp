@@ -59,7 +59,7 @@
                             <div class="px-2">
                                 <h6 class="mb-0">Pseudo</h6>
                             </div>
-                            <p class="mb-0">${utilisateur.getPseudo()} ton pseudo</p>
+                            <p class="mb-0">${utilisateur.getPseudo()}</p>
                         </div>
                         <div class="d-flex align-items-center p-3" style="height: 20px;">
                             <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-circle text-primary">
