@@ -12,7 +12,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="ressources/css/style.css" rel="stylesheet">
+  <link href="ressources/css/styleProfilModification.css" rel="stylesheet">
     <title>Modification utilisateur</title>
 </head>
 <body>
@@ -61,7 +61,7 @@
 				<label for="rue">Rue : </label> <input type="text" name="rue" id="rue" value ="${param.rue}">
 			</div>
 			<div class="item">
-				<label for="code_postal"> code_postal : </label> <input type="text"	name="code_postal" id="code_postal" value ="${param.code_postal}">
+				<label for="code_postal"> Code postal : </label> <input type="text"	name="code_postal" id="code_postal" value ="${param.code_postal}">
 			</div>
 			<div class="item">
 				<label for="ville">Ville : </label> <input type="text" name="ville" id="ville" value ="${param.ville}">
@@ -88,6 +88,11 @@
 				<div class= "item2">
 				<input class="valider"type="submit" value="Enregistrer" /> 
 				</div>
+				
+				<div class= "item2" >
+				<input class="valider"type="submit" value="Supprimer mon compte" /> 
+				</div>
+				
 				<div class= "item2">
 				<a href="<%=request.getContextPath()%>">
 				<input class="valider" type="reset" value="Annuler" /></a>
@@ -95,7 +100,7 @@
 			</div>
 				
 		</form>
-		
+		<div class="item3">test test tesrt</div>
 
 
 </body>
