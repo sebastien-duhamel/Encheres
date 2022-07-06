@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import fr.teamA.encheres.BusinessException;
 import fr.teamA.encheres.bo.ArticleVendu;
-import fr.teamA.encheres.bo.Utilisateur;
+
 
 public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 

@@ -40,8 +40,19 @@
 				<label for="motDePasse" class="champs">Mot	de passe :</label> 
 				<input type="password" id="motDePasse" name="motDePasse" />
 			</div>
-			<button type="submit">Connexion</button>
-	
+			<div id="container">
+				<div>
+					<button type="submit" id="connexion">Connexion</button>
+				</div>
+				<div id="souvenir">
+					<div>
+						<input type="checkbox" id="cocher" name="cocher"> <label for="cocher">Se souvenir de moi</label>
+					</div>
+					<div>
+						<a href="#">Mot de passe oublié</a>
+					</div>
+				</div>
+			</div>
 		</form>
 		
 		<div id="creer">

@@ -210,18 +210,18 @@ public class UtilisateurManager {
 
 	//supprimer un utilisateur
 
-    public Utilisateur supprimerUtilisateur(Utilisateur utilisateur) throws BusinessException {
+    public void supprimerUtilisateur(int noUtilisateur) throws BusinessException {
 		BusinessException exception = new BusinessException();
 
 		if (!exception.hasErreurs()) {
 			// this.utilisateurDAO.insert(utilisateur);
-			DAOFactory.getUtilisateurDAO().delete(utilisateur);
+			DAOFactory.getUtilisateurDAO().delete(noUtilisateur);
 		}
 
 		if (exception.hasErreurs()) {
 			throw exception;
 		}
-		return utilisateur;
+	
 	}
 
 	
