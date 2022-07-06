@@ -43,7 +43,7 @@
 			<div class="item">
 			
 			<div class="item">
-				<label for="credit">PROFIL SUPPRIME ainsi que ses articles : </label> <output type="number" name="credit" id="credit">
+				<label for="credit">Etes vous sûr-e de bien vouloir supprimer ce profil ? : </label> 
 			</div>
 			
 			</div>
@@ -52,9 +52,6 @@
 			</br>
 			
 			<div class="container2">
-				<div class= "item2">
-				<input class="valider"type="submit" value="Enregistrer" /> 
-				</div>
 				<div class= "item2">
 				<a href="<%=request.getContextPath()%>">
 				<input class="valider" type="reset" value="Supprimer" /></a>

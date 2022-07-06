@@ -163,13 +163,10 @@ public void delete(Utilisateur utilisateur) throws BusinessException {
 				
 		try(Connection cnx = ConnectionProvider.getConnection())
 		{
-			try
-			{
 				cnx.setAutoCommit(false);
 				PreparedStatement pstmt;
 				ResultSet rs;
 			
-					try { 
 							if(utilisateur.getNoUtilisateur()!=0)
 						
 						{
@@ -178,24 +175,16 @@ public void delete(Utilisateur utilisateur) throws BusinessException {
 							pstmt.executeUpdate();
 							rs=pstmt.getGeneratedKeys();
 						}
-					} catch (Exception e) {
-					
-						e.printStackTrace();
-					}
 					
 			}
-						catch(Exception e)
+			catch(Exception e)
 			{
 				e.printStackTrace();
 				BusinessException businessException = new BusinessException();
 				businessException.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR_ECHEC);
 				throw businessException;
-			}} catch (SQLException e) {
-				
-				e.printStackTrace();
 			}
-			
-		}
+	}
 
 	
 	private Utilisateur getUtilisateurbyIdentifiant(String identifiant, String requete) throws BusinessException {

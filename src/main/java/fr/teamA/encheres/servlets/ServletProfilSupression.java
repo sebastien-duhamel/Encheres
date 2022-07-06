@@ -48,10 +48,11 @@ public class ServletProfilSupression extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur = new ArrayList<>();
 		
+		Utilisateur noUtilisateur = (Utilisateur)request.getSession().getAttribute("NoUtilisateur");
+		
 		try {
 			
-			Utilisateur utilisateur = new Utilisateur();
-			UtilisateurManager.getInstance().supprimerUtilisateur(utilisateur);
+			Utilisateur utilisateur = UtilisateurManager.getInstance().supprimerUtilisateur(noUtilisateur);
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			response.sendRedirect("Accueil");
 			
