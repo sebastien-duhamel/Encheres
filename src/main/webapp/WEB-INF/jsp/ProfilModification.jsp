@@ -20,7 +20,7 @@
 		<nav id="nav">
 				<div class="navItem">
 					<h2>
-						<jsp:include page="/WEB-INF/fragments/AfficherLogo.jsp"></jsp:include>
+						<jsp:include page="/WEB-INF/fragments/fragmentLogo.jsp"></jsp:include>
 					</h2>				
 				</div>
 			</nav>

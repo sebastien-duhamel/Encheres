@@ -4,34 +4,27 @@
 <%@page import="java.util.List"%>
 <%@page import="fr.teamA.encheres.bo.Utilisateur"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+     
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Accueil</title>
+    <title>Afficher Utilisateur</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
 
 <body>
-    <section class="text-center bg-light features-icons" style="margin-top: 0;height: 1038px;padding: 0;">
+    <section class="text-center text-dark bg-light features-icons" style="margin-top: 0;height: 1038px;padding: 0;">
+        <h4 class="mb-5" style="font-size: 25px;margin: 0x;margin-top: 0;padding-top: 30px;"><a class="fs-5 fw-bold link-dark d-flex align-items-start align-content-start justify-content-xxl-start align-items-xxl-start" href="Accueil" style="padding-left: 15%;padding-top: 36px;text-decoration:none">ENI-Enchères</a></h4>
+        <div></div>
         <div class="container" style="width: auto;max-width: 100%;padding-right: 0px;text-align: left;padding-left: 0;">
-        
-        <h5>
-				<c:choose>
-					<c:when test="${utilisateur!=null}">
-						<jsp:include page="/WEB-INF/fragments/AfficherLogo.jsp"></jsp:include>
-					</c:when>
-				</c:choose>	
-		</h5>	
-       		
+            <h5 style="display: block;padding-left: 11%;"></h5>
         </div>
-        <div class="container d-flex justify-content-center" style="margin-left: 0;width: auto;min-width: 90%;max-width: 100%;padding-right: 10px;padding-left: 10px;margin-bottom: 20px;">
+        <div class="container d-flex justify-content-center" style="margin-left: 0;width: auto;min-width: 90%;max-width: 100%;padding-right: 10px;padding-left: 10px;margin-bottom: 24px;padding-top: 24px;">
             <div class="d-flex flex-column justify-content-center align-items-start justify-content-lg-center align-items-lg-start align-items-xl-start h-100" style="width: auto;min-width: 360px;">
                 <div class="d-flex align-items-center p-3" style="height: 30px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-x text-success">
@@ -111,12 +104,16 @@
                 </div>
             </div>
         </div>
+        
         <c:if test="${utilisateur!=null}">
 						<jsp:include page="/WEB-INF/fragments/fragmentDetailUtilisateur.jsp"></jsp:include>
 					</c:if>
-       
     </section>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+</html>
+<body>
+
+</body>
 </html>

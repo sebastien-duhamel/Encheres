@@ -19,22 +19,6 @@
  		<header>
 			<h2>Eni-Encheres</h2>
 		</header>
-
-<!-- 
-
-		<header>
-		<nav id="nav">
-				<div class="navItem">
-				<c:choose>
-					<c:when test="${utilisateur!=null}">
-						<jsp:include page="/WEB-INF/fragments/AfficherLogo.jsp"></jsp:include>
-					</c:when>
-				</c:choose>				
-				</div>
-				
-			</nav>
-		</header>
-		-->
 		
 		<h3>Mon profil</h3>
 
