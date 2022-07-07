@@ -41,12 +41,12 @@
 					
 				</c:if>
 				
-				</br>
-				</br>
+				<br/>
+				<br/>
 				
 			</div>
 				
-				<form action="ProfilCreation" method="post">
+				<form action="ProfilModification" method="post">
 					<div class="container">
 						<div class="item">
 							<label for="pseudo">Pseudo : </label> <input type="text" name="pseudo" id="pseudo" value ="${utilisateur.pseudo}">
@@ -88,13 +88,13 @@
 						</div>
 					</div>
 					<div class="item" id="credits">
-						<label for="credit">Crédit : </label> <output type="number" name="credit" id="credit" value ="${utilisateur.credit}">
+						<label for="credit">Crédit : ${utilisateur.credit}</label>
 					</div>
 					
 					
 					
-					</br>
-					</br>
+					<br/>
+					<br/>
 					
 					<div class="container2">
 						<div class= "item2">
