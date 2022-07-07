@@ -45,7 +45,7 @@
 					<div id="filtres">
 						<div><label for="contient">Filtres : </label> </div>
 						<div><input type="text" name="contient" id ="contient" placeholder="&#x1F50D; Le nom de l'article contient"></div>
-						<div>
+						<div id="cat1">
 							<label for="categorie" id="categorie">Catégorie : </label> 
 							<select name="categorie">
 								<option>Toutes

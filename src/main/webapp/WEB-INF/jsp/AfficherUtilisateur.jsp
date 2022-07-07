@@ -20,9 +20,16 @@
 
 <body>
     <section class="text-center bg-light features-icons" style="margin-top: 0;height: 1038px;padding: 0;">
-        <h4 class="mb-5" style="font-size: 25px;margin: 0x;margin-top: 0;padding-top: 30px;"><span style="color: rgb(0, 123, 255);">Les objets sont nos amis</span>&nbsp;<br>ENI-Enchères : la cession d’objets de seconde main sans transaction financière <i class="far fa-handshake text-success" style="height: 33px;"></i></h4>
         <div class="container" style="width: auto;max-width: 100%;padding-right: 0px;text-align: left;padding-left: 0;">
-            <h5 style="display: block;padding-left: 11%;">ENI-Enchères</h5>
+        
+        <h5>
+				<c:choose>
+					<c:when test="${utilisateur!=null}">
+						<jsp:include page="/WEB-INF/fragments/AfficherLogo.jsp"></jsp:include>
+					</c:when>
+				</c:choose>	
+		</h5>	
+       		
         </div>
         <div class="container d-flex justify-content-center" style="margin-left: 0;width: auto;min-width: 90%;max-width: 100%;padding-right: 10px;padding-left: 10px;margin-bottom: 20px;">
             <div class="d-flex flex-column justify-content-center align-items-start justify-content-lg-center align-items-lg-start align-items-xl-start h-100" style="width: auto;min-width: 360px;">

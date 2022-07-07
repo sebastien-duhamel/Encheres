@@ -46,9 +46,9 @@
 				</div>
 				<div id="souvenir">
 					<div>
-						<input type="checkbox" id="cocher" name="cocher"> <label for="cocher">Se souvenir de moi</label>
+						<input type="checkbox" id="cocher" name="cocher"> <label for="cocher" id="c1">Se souvenir de moi</label>
 					</div>
-					<div>
+					<div id="c2">
 						<a href="#">Mot de passe oublié</a>
 					</div>
 				</div>
@@ -56,8 +56,9 @@
 		</form>
 		
 		<div id="creer">
-			<a href="ProfilCreation"><button type="submit">Créer un compte</button></a>
-		
+			<div>
+				<a href="ProfilCreation"><button type="submit">Créer un compte</button></a>
+			</div>
 		</div>
 		
 	</div>

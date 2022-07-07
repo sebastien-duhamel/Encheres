@@ -3,10 +3,13 @@
 /***********************************************************************/
 /**************************   POUR TOUT   ******************************/
 /***********************************************************************/
-h2{
-	padding-left: 20px;
 
+body {
+	padding-left: 20px;
+	padding-right: 20px;
+	max-width: 100%;
 }
+
 #contient {
 	min-width: 90%;
 	height: 25px;
@@ -53,27 +56,29 @@ h2{
 	height: 150px;
 }
 select{
- 	display:inline-block;
-	justify-content: flex-end;
-	align-items: flex-end;
+ 	
+	
 	width : 30vw;
 }
 #categorie{
-  display: block;
-  width: 10vw;
-  display:inline-flex;
-align-items: flex-end;
-  text-align: left;
+  margin-right: 10px;
+}
+
+#cat1{
+	flex-direction: row;
+	align-content: center;
+	align-items: center;
 }
 
 
 /***********************************************************************/
 /*******************       ECRAN SUPERIEUR A 500     ******************/
 /***********************************************************************/
-body {
+
+
+h2{
 	padding-left: 20px;
-	padding-right: 20px;
-	max-width: 100%;
+
 }
 
 @media screen and (min-width : 501px) {
@@ -113,7 +118,6 @@ body {
 		display: flex;
 		flex-direction: column;
 		justify-content : center;
-		border: solid;
 		width: 40vw;
 	}
 	#filtres :nth-child(1) {
@@ -151,6 +155,12 @@ body {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
+	
+	h2{
+	padding-left: 10px;
+
+}
+
 	#encheres{
 	display: none;
 	}
@@ -177,7 +187,6 @@ body {
 	#filtres {
 		display: flex;
 		flex-direction: column;
-		border: solid;
 		width: 100%;
 	}
 	#filtres :nth-child(1) {

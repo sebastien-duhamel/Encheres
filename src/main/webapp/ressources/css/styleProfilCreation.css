@@ -4,6 +4,13 @@ html,body{
   padding : 0px;
   margin : 5px;
  }
+ 
+ h2{
+	padding-left: 15%;
+	text-decoration:none
+
+}
+
 h3{
 	text-align: center;
 }

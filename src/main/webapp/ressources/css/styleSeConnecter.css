@@ -1,63 +1,87 @@
 @charset "UTF-8";
 
-html,body{
-	padding : 10px;
-	margin : 10px;
+html, body {
+	padding: 10px;
+	margin: 10px;
 }
 
-h2{
-	padding-left: 40px
+h2 {
+	padding-left: 11%;
 }
 
-#erreur{
-	min-width : 300px;
-	width : auto;
-	height : 8vh;
-
+#erreur {
+	min-width: 300px;
+	width: auto;
+	height: 8vh;
 }
 
-.principale{
-	display : flex;
+.principale {
+	display: flex;
 	flex-direction: column;
-	justify-content : space-around;
+	justify-content: space-around;
 	align-items: center;
-	width : 100%;
-	height : 50vh;
-	border : solid;
+	width: 100%;
+	height: 50vh;
 }
 
-.formulaire{
-	display : flex;
-	flex-direction : column;
-	justify-content : space-around;
-	border: solid;
-	height : 30vh;
-		width : 100%;
-		align-content: center;
-		align-items: center;
-}
-.item{
-	color : red;
+.formulaire {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 30vh;
+	width: 360px;
+	align-content: center;
+	align-items: left;
+	
 }
 
-#container{
-	display : flex;
+label{
+	min-width: 100px;
+	display: inline-block;
+	text-align: left;
+}
+
+
+#container {
+	display: flex;
 	flex-direction: row;
-	border : solid;
+	
 }
 
-#connexion{
+#container>div{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#connexion {
 	height: 6vh;
 	min-width: 8vw;
 	box-shadow: 5px 5px 0px black;
 }
-#souvenir{
+
+#souvenir {
 	display: flex;
 	flex-direction: column;
+	min-width: 200px;
+	justify-content: space-between;
 }
 
+#c2{
+	padding-left: 10%;
+}
 
+#creer{
+	width: 360px;
+	height: 10vh;
+	display: inline-block;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	
+}
 
-
-
-
+button {
+	width: 100%;
+	height: 8vh;
+	box-shadow: 5px 5px 0px black;
+}

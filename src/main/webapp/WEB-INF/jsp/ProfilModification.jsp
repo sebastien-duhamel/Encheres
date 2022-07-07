@@ -17,7 +17,13 @@
 </head>
 <body>
 		<header>
-			<h1>Eni-Enchêres</h1>
+		<nav id="nav">
+				<div class="navItem">
+					<h2>
+						<jsp:include page="/WEB-INF/fragments/AfficherLogo.jsp"></jsp:include>
+					</h2>				
+				</div>
+			</nav>
 		</header>
 		
 		

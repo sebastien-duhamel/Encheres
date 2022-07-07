@@ -11,7 +11,6 @@ html, body {
 	justify-content: center;
 	width: 100%; 
 	align-items : center;
-	border: solid;
 	align-items: center;
 }
 
@@ -19,8 +18,13 @@ html, body {
 	max-width: 1050px;
 }
 
-h1 {
+h2 {
 	padding-left: 15%;
+	text-decoration:none
+}
+
+h2>a {
+	text-decoration:none
 }
 
 h3 {
@@ -55,7 +59,6 @@ label {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	border: solid;
 }
 
 .item2 {
