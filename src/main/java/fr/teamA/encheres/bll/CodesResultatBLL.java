@@ -32,8 +32,6 @@ public abstract class CodesResultatBLL {
 
 	public static final int IDENTIFIANT_KO = 20010;
 
-	public static final int MOT_DE_PASSE_KO = 20011;
-
 	public static final int REGLE_FORMAT_NOM_ARTICLE_ERREUR = 20012;
 
 	public static final int REGLE_FORMAT_DESCRIPTION_ERREUR = 20013;
@@ -48,6 +46,12 @@ public abstract class CodesResultatBLL {
 	
 	public static final int REGLE_EMAIL_EXISTANT = 20018;
 	
-	public static final int REGLE_ERREUR_IMPREVU = 20029;
+	public static final int REGLE_ERREUR_IMPREVU = 20019;
+	
+	public static final int ERREUR_LECTURE_PROFIL_VENDEUR = 20030;
+	
+	public static final int REGLE_PRESENCE_MDP_ACTUEL = 20031;
+	
+	public static final int REGLE_FORMAT_NOUVEAU_MDP_ERREUR = 20032;
 
 }
