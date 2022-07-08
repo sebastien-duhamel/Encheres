@@ -101,18 +101,14 @@ public class UtilisateurManager {
 
 	//supprimer un utilisateur
 
-    public void supprimerUtilisateur(Utilisateur utilisateur, String mdpActuel) throws BusinessException {
+    public void supprimerUtilisateur(int noUtilisateur) throws BusinessException {
     	
 		BusinessException exception = new BusinessException();
-		if (utilisateur == null || !mdpActuel.equals(utilisateur.getMotDePasse())) {
-			
-			exception.ajouterErreur(CodesResultatBLL.REGLE_PRESENCE_MDP_ACTUEL);
-			throw exception;
-		}
+		
 
 		if (!exception.hasErreurs()) {
 			
-			DAOFactory.getUtilisateurDAO().delete(utilisateur.getNoUtilisateur());
+			DAOFactory.getUtilisateurDAO().delete(noUtilisateur);
 		}
 
 		if (exception.hasErreurs()) {

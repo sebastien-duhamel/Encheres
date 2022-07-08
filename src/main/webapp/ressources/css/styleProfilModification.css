@@ -79,10 +79,31 @@ label {
 }
 
 #supprimer {
+	display : flex;
 	height: 8vh;
-	width: 160px;
+	width: 170px;
 	box-shadow: 5px 5px 0px black;
+	align-items: center;
+	justify-content: center;
+	    border-width:0.5px;
+   	background-color: #F0F0F0;
+   	border-left: solid;
+   	border-top :solid;
+   	
+  box-sizing: border-box;
+    background-color: buttonface;
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 1px;
+
+    border-color: buttonborder;
+    border-image: initial;
 }
+#suppr{
+	text-decoration: none;
+	color : black;
+}
+
 
 #annuler {
 	height: 8vh;

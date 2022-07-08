@@ -101,8 +101,8 @@
 						<input id="enregistrer"type="submit" value="Enregistrer" /> 
 						</div>
 						
-							<div class= "item2" >
-								<a href="ProfilSuppression"><button id="supprimer">Supprimer mon compte</button></a>
+							<div class= "item2" id="supprimer">
+								<div><a href="ProfilSuppression" id="suppr">Supprimer mon compte</a></div>
 							</div>
 					
 						<div class= "item2">
