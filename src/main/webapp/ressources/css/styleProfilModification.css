@@ -20,11 +20,13 @@ html, body {
 
 h2 {
 	padding-left: 15%;
-	text-decoration:none
+	text-decoration:none;
+	font-size: 1.5em;
 }
 
 h2>a {
-	text-decoration:none
+	text-decoration:none;
+	color : black;
 }
 
 h3 {

@@ -19,7 +19,7 @@
 		<header>
 			<nav id="nav">
 				<div class="navItem">
-					<h2>Eni-Encheres</h2>
+					<h2>ENI-Encheres</h2>
 				</div>
 				<div class="navItem">
 				<c:choose>
