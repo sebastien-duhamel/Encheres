@@ -17,11 +17,12 @@
 </head>
 <body>
 		<header>
-			<nav id="nav">
 				<div class="navItem">
 					<h2>Eni-Encheres</h2>
 				</div>
+				<div class="navItem">
 				<h3>Nouvelle Vente</h3>
+				</div>
 				
 <div class="container">
 	<div class="row">
@@ -63,7 +64,8 @@
 			
 				<div class="item">
 				<label for="image">Photo: </label> <input type="text" name="photo" id="photo" />
-				il faudra probablement faire une servlet pour pouvoir upload une image
+				<br>
+				il faudra faire une servlet pour pouvoir upload une image
 				</div>
 			
 				<div class="item" id="prix_vente">
@@ -83,6 +85,7 @@
 				<div class="column">
 				<div class="item">
 				<label for="retrait">Retrait:</label>
+				<br>
 				
 				<label for="rue">Rue : </label>
 				<input type="text" name="rue" id="rue" />
@@ -90,16 +93,24 @@
 				
 				<div class="item">
 				<label for="code_postal">Code Postal :  </label>
+				<input type="text" name="code_postal" id="code_postal" />
     			</div>
+    			
+    			<div class="item">
+				<label for="ville">Ville :  </label>
+				<input type="text" name="ville" id="ville" />
+    			</div>
+    			
     			
     			</div>
     			</div>
    
 </div>
 </div>	
-</nav>
+
 		</header>
-		
+		<br>
+		<br>
 <footer>
 		<div class="container">
 		<div class= "item2">
