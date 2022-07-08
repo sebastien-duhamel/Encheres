@@ -24,7 +24,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 	private static final String GET_LIST_PSEUDO ="select pseudo from UTILISATEURS ;";
 	private static final String GET_LIST_EMAIL = "select email from UTILISATEURS ;";
 	private static final String GET_LIST_UTILISATEUR = "select no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit , administrateur from utilisateurs ;";
-	private static final String UPDATE_UTILISATEURS = "update UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, from utilisateurs where no_utilisateur=? ;";
+	private static final String UPDATE_UTILISATEURS = "update UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? where no_utilisateur=? ;";
 	private static final String DELETE_UTILISATEURS = "delete from ARTICLES_VENDUS where no_utilisateur=? ;delete from UTILISATEURS where no_utilisateur=?;";
 	//private static final String DELETE_ARTICLE_VENDU = "delete from ARTICLES_VENDUS(noArticle, nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, prixVente, etatVente, vendeur) values(?,?,?,?,?,?,?,?,?,?);";
 	
@@ -82,7 +82,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 		{
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_ECHEC);
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_NULL);
 			throw businessException;
 		}
 		
@@ -90,68 +90,69 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO{
 
 	//Modifier informations utilisateur
 	
-	@SuppressWarnings("unused")
+
 	@Override
 	public void update(Utilisateur utilisateur) throws BusinessException {
+		
 			if (utilisateur == null)
-		{
+			{
 		BusinessException businessException = new BusinessException();
 					businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_NULL);
 					throw businessException;
-				}
-			try(Connection cnx = ConnectionProvider.getConnection())
-			{
-				try
+			}
+			else {
+
+				try(Connection cnx = ConnectionProvider.getConnection())
 				{
-					cnx.setAutoCommit(false);
-					PreparedStatement pstmt;
-					ResultSet rs;
-					if(utilisateur.getNoUtilisateur()!=0)
-						{
-				try { 
-					PreparedStatement utilisateurUpdate = cnx.prepareStatement(UPDATE_UTILISATEURS , PreparedStatement.RETURN_GENERATED_KEYS);
-		 
-					utilisateurUpdate.setString(1, utilisateur.getPseudo());		 
-					utilisateurUpdate.setString(2, utilisateur.getNom());		 
-					utilisateurUpdate.setString(3, utilisateur.getPrenom());		 
-					utilisateurUpdate.setString(4, utilisateur.getEmail());		 
-					utilisateurUpdate.setString(5, utilisateur.getTelephone());		 
-					utilisateurUpdate.setString(6, utilisateur.getRue());					
-					utilisateurUpdate.setString(7, utilisateur.getCodePostal());					
-					utilisateurUpdate.setString(8, utilisateur.getVille());					
-					utilisateurUpdate.setString(9, utilisateur.getMotDePasse());
-					
-					utilisateurUpdate.executeUpdate();
-					
-					rs = utilisateurUpdate.getGeneratedKeys();
-					if(rs.next())
+					try
 					{
-						utilisateur.setNoUtilisateur(rs.getInt(1));
-					
-					rs.close();
-					utilisateurUpdate.close();
-								 
-						}
-					
-					cnx.commit();
+						cnx.setAutoCommit(false);
+						
+						
+							
+					try { 
+						PreparedStatement utilisateurUpdate = cnx.prepareStatement(UPDATE_UTILISATEURS);
+			 
+						utilisateurUpdate.setString(1, utilisateur.getPseudo());		 
+						utilisateurUpdate.setString(2, utilisateur.getNom());		 
+						utilisateurUpdate.setString(3, utilisateur.getPrenom());		 
+						utilisateurUpdate.setString(4, utilisateur.getEmail());		 
+						utilisateurUpdate.setString(5, utilisateur.getTelephone());		 
+						utilisateurUpdate.setString(6, utilisateur.getRue());					
+						utilisateurUpdate.setString(7, utilisateur.getCodePostal());					
+						utilisateurUpdate.setString(8, utilisateur.getVille());					
+						utilisateurUpdate.setString(9, utilisateur.getMotDePasse());
+						utilisateurUpdate.setInt(10,utilisateur.getNoUtilisateur());
+						utilisateurUpdate.executeUpdate();
+						
+						
+						
+						utilisateurUpdate.close();
+									 
+							
+						
+						cnx.commit();
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+						cnx.rollback();
+						throw e;
+					}
+				
 				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-					cnx.rollback();
-					throw e;
-				}
-			}}
+			
 			catch(Exception e)
 			{
 				e.printStackTrace();
 				BusinessException businessException = new BusinessException();
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_UTILISATEUR_ECHEC);
+				businessException.ajouterErreur(CodesResultatDAL.ECHEC_MISE_A_JOUR );
 				throw businessException;
-			}} catch (SQLException e) {
+			}
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+			}
 		}
 	
 	
@@ -204,7 +205,7 @@ public void delete(int noUtilisateur) throws BusinessException {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);
+			businessException.ajouterErreur(CodesResultatDAL.ERREUR_NON_GEREE);
 			throw businessException;
 		}
 		
@@ -228,7 +229,7 @@ public void delete(int noUtilisateur) throws BusinessException {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);
+			businessException.ajouterErreur(CodesResultatDAL.ERREUR_NON_GEREE);
 			throw businessException;
 		}
 		
@@ -270,7 +271,7 @@ public void delete(int noUtilisateur) throws BusinessException {
 		
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_PSEUDO_ECHEC_BDD);
+			businessException.ajouterErreur(CodesResultatDAL.ERREUR_NON_GEREE);
 			throw businessException;
 		}
 		
@@ -298,7 +299,7 @@ public void delete(int noUtilisateur) throws BusinessException {
 		
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_PSEUDO_ECHEC_BDD);
+			businessException.ajouterErreur(CodesResultatDAL.ERREUR_NON_GEREE);
 			throw businessException;
 		}
 		
@@ -325,7 +326,7 @@ public void delete(int noUtilisateur) throws BusinessException {
 		
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_LISTE_UTILISATEUR_ECHEC);
+			businessException.ajouterErreur(CodesResultatDAL.ERREUR_NON_GEREE);
 			throw businessException;
 		}
 		return listeUtilisateur;

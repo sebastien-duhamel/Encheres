@@ -34,7 +34,7 @@
                     <div class="px-2">
                         <h6 class="mb-0">Pseudo</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 42px;">${utilisateur.getPseudo()}</p>
+                    <p class="mb-0" style="margin-left: 42px;">${vendeur.getPseudo()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 30px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-circle text-primary">
@@ -44,7 +44,7 @@
                     <div class="px-2">
                         <h6 class="mb-0">Nom</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 60px;">${utilisateur.getNom()}</p>
+                    <p class="mb-0" style="margin-left: 60px;">${vendeur.getNom()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 24px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-square text-primary">
@@ -54,7 +54,7 @@
                     <div class="px-2">
                         <h6 class="mb-0">Prénom</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 38px;">${utilisateur.getPrenom()}</p>
+                    <p class="mb-0" style="margin-left: 38px;">${vendeur.getPrenom()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 24px;padding: 5px;padding-top: 0;padding-right: 0;padding-bottom: 0;padding-left: 0;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-envelope text-primary">
@@ -63,7 +63,7 @@
                     <div class="px-2">
                         <h6 class="mb-0">Email</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 55px;">${utilisateur.getEmail()}</p>
+                    <p class="mb-0" style="margin-left: 55px;">${vendeur.getEmail()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 16px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-telephone text-primary">
@@ -73,7 +73,7 @@
                         <h6 class="mb-0">Téléphone</h6>
                     </div>
                     <p class="mb-0"></p>
-                    <p class="mb-0" style="margin-left: 20px;">${utilisateur.getTelephone()}</p>
+                    <p class="mb-0" style="margin-left: 20px;">${vendeur.getTelephone()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 20px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-house-door text-primary">
@@ -82,7 +82,7 @@
                     <div class="px-2">
                         <h6 class="mb-0">Rue</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 66px;">${utilisateur.getRue()}</p>
+                    <p class="mb-0" style="margin-left: 66px;">${vendeur.getRue()}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 19px;width: auto;padding: 16px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pin text-primary">
@@ -91,7 +91,7 @@
                     <div class="px-2" style="width: 99.5px;">
                         <h6 class="mb-0" style="width: 86.5px;font-size: 16px;">Code postal</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 10px;">${utilisateur.getCodePostal()}</p>
+                    <p class="mb-0" style="margin-left: 10px;">${vendeur.codePostal}</p>
                 </div>
                 <div class="d-flex align-items-center p-3" style="height: 16px;">
                     <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon" style="width: 28px;height: 28px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-signpost text-primary">
@@ -100,20 +100,16 @@
                     <div class="px-2">
                         <h6 class="mb-0">Ville</h6>
                     </div>
-                    <p class="mb-0" style="margin-left: 62px;">${utilisateur.getVille()}</p>
+                    <p class="mb-0" style="margin-left: 62px;">${vendeur.ville}</p>
                 </div>
             </div>
         </div>
-        
-        <c:if test="${utilisateur!=null}">
+      
+        <c:if test="${utilisateur.pseudo==vendeur.pseudo}">
 						<jsp:include page="/WEB-INF/fragments/fragmentDetailUtilisateur.jsp"></jsp:include>
 					</c:if>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
-<body>
-
-</body>
 </html>

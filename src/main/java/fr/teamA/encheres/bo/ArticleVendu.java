@@ -1,7 +1,7 @@
 package fr.teamA.encheres.bo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
 
 public class ArticleVendu implements Serializable {
 
@@ -10,11 +10,10 @@ public class ArticleVendu implements Serializable {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
+	private String dateDebutEncheres;
+	private String dateFinEncheres;
 	private int miseAPrix = 0;
 	private int prixVente = 0;
-//	private int etatVente;
 	private Utilisateur vendeur;
 	private int noCategorie;
 	
@@ -24,8 +23,8 @@ public class ArticleVendu implements Serializable {
 	}
 
 //	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-//			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur) {
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+//			int miseAPrix, int prixVente, Utilisateur vendeur) {
+	public ArticleVendu(String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres,
 			int miseAPrix, int prixVente, int etatVente,Utilisateur vendeur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
@@ -34,13 +33,12 @@ public class ArticleVendu implements Serializable {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-//		this.etatVente = etatVente;
 		this.vendeur = vendeur;
 		this.noCategorie = noCategorie;
 	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur vendeur,int noCategorie ) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres,
+			String dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur vendeur,int noCategorie ) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -49,7 +47,6 @@ public class ArticleVendu implements Serializable {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-//		this.etatVente = etatVente;
 		this.vendeur = vendeur;
 		this.noCategorie = noCategorie;
 	}
@@ -79,19 +76,19 @@ public class ArticleVendu implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDate getDateDebutEncheres() {
+	public String getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+	public void setDateDebutEncheres(String dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
-	public LocalDate getDateFinEncheres() {
+	public String getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+	public void setDateFinEncheres(String dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 
@@ -111,13 +108,6 @@ public class ArticleVendu implements Serializable {
 		this.prixVente = prixVente;
 	}
 
-//	public int getEtatVente() {
-//		return etatVente;
-//	}
-//
-//	public void setEtatVente(int etatVente) {
-//		this.etatVente = etatVente;
-//	}
 
 	public int getNoArticle() {
 		return noArticle;
@@ -143,14 +133,5 @@ public class ArticleVendu implements Serializable {
 				+ "]";
 	}	
 
-//	@Override
-//	public String toString() {
-//		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-//				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-//				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
-//	}
-
-	
-	
 	
 }

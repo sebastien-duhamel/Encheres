@@ -1,11 +1,12 @@
 package fr.teamA.encheres.dal;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import fr.teamA.encheres.BusinessException;
@@ -62,7 +63,7 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLES_VENDUS_ECHEC);
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_ARTICLES_VENDUS_NULL);
 			throw businessException;
 		}
 
@@ -72,7 +73,9 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 	public List<ArticleVendu> afficherListeArticle() throws BusinessException {
 
 		List<ArticleVendu> listeArticleVendu = new ArrayList<ArticleVendu>();
-//			LocalDate date = LocalDate.now();
+		String dateDebut;
+		String dateFin;
+		
 
 		try (Connection cnx = ConnectionProvider.getConnection();
 				Statement stmt = cnx.createStatement();
@@ -84,20 +87,19 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 			UtilisateurDaoJdbcImpl userDAO = new UtilisateurDaoJdbcImpl();
 //					if(rs.next()) {
 			while (rs.next()) {
+				dateDebut=convertDate(rs.getDate("date_debut_encheres"));
+				dateFin=convertDate(rs.getDate("date_fin_encheres"));
 				article = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getString("description"), dateDebut, dateFin, rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), 2, userDAO.getUtilisateurbyId(rs.getInt("no_utilisateur")), rs.getInt("no_categorie"));
 				listeArticleVendu.add(article);
-			}
-//					}else {
-//						listeArticleVendu = null;
-//					}
-
+				
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD);// TODO modifier cette erreur
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
 			throw businessException;
 		}
 
@@ -107,6 +109,8 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 	@Override
 	public List<ArticleVendu> afficherListeArticleFiltre(String contient, int categorie) throws BusinessException {
 		String requete ;
+		String dateDebut;
+		String dateFin;
 		
 		if(categorie != 0) {
 			requete = GET_LIST_FILTRE;
@@ -130,9 +134,10 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 			}
 			try(ResultSet rs = pstmt.executeQuery()){
 				while (rs.next()) {
+					dateDebut=convertDate(rs.getDate("date_debut_encheres"));
+					dateFin=convertDate(rs.getDate("date_fin_encheres"));
 					articleFiltre = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
-							rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-							rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
+							rs.getString("description"), dateDebut, dateFin, rs.getInt("prix_initial"),
 							rs.getInt("prix_vente"), rs.getInt("no_categorie"), userDAO.getUtilisateurbyId(rs.getInt("no_utilisateur")),rs.getInt("no_categorie"));
 					listeArticleFiltre.add(articleFiltre);
 				}
@@ -140,11 +145,18 @@ public class ArticleVenduDaoJdbcImpl implements ArticleVenduDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.SELECT_PSEUDO_ECHEC_BDD); //TODO modifier erreur
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
 			throw businessException;
 		}
 		return listeArticleFiltre;
 		
 	}
-
+	
+	private String convertDate(Date date) {
+		DateTimeFormatter modele = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		String dateFormate = date.toLocalDate().format(modele);
+		
+		return dateFormate;
+	}
+	
 }

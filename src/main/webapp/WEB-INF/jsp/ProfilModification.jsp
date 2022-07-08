@@ -75,13 +75,13 @@
 							<label for="ville">Ville : </label> <input type="text" name="ville" id="ville" value ="${utilisateur.ville}">
 						</div>
 						<div class="item" id="actuel">
-							<label for="motDePasse">Mot de passe actuel : </label> <input type="password" name="motDePasse" id="motDePass" value ="${utilisateur.motDePasse}">
+							<label for="mdpActuel">Mot de passe actuel : </label> <input type="password" name="mdpActuel" id="mdpActuel" value ="">
 						</div>
 						<div class="item" id="vide">
 							
 						</div>
 						<div class="item" id="new">
-							<label for="motDePasse">Nouveau Mot de passe : </label> <input type="password" name="motDePasse" id="motDePass">
+							<label for="mdpFutur">Nouveau Mot de passe : </label> <input type="password" name="mdpFutur" id="mdpFutur">
 						</div>
 						<div class="item">
 							<label for="verifMDP">Confirmation : </label> <input type="password" name="verifMDP" id="verifMDP">
@@ -102,7 +102,7 @@
 						</div>
 						
 							<div class= "item2" >
-								<a href="ProfilSuppression">supprimer </a>
+								<a href="ProfilSuppression"><button id="supprimer">Supprimer mon compte</button></a>
 							</div>
 					
 						<div class= "item2">

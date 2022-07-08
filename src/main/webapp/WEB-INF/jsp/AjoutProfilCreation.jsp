@@ -33,8 +33,8 @@
 			
 		</c:if>
 		
-		</br>
-		</br>
+		<br/>
+		<br/>
 		
 	</div>
 		
@@ -67,7 +67,7 @@
 				<label for="ville">Ville : </label> <input type="text" name="ville" id="ville">
 			</div>
 			<div class="item">
-				<label for="motDePasse">Mot de passe : </label> <input type="password" name="motDePasse" id="motDePass">
+				<label for="motDePasse">Mot de passe : </label> <input type="password" name="motDePasse" id="motDePasse">
 			</div>
 			<div class="item">
 				<label for="verifMDP">Confirmation : </label> <input type="password" name="verifMDP" id="verifMDP">
@@ -75,8 +75,8 @@
 			
 			</div>
 			
-			</br>
-			</br>
+			<br/>
+			<br/>
 			
 			<div class="container2">
 				<div class= "item2">

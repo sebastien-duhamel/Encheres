@@ -39,9 +39,8 @@ public class ServletAcceuil extends HttpServlet {
 			
 			
 		} catch (BusinessException e) {
-			
 			e.printStackTrace();
-			
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());	
 		}
 		
 		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
@@ -57,14 +56,13 @@ public class ServletAcceuil extends HttpServlet {
 		try {
 			
 			List<ArticleVendu> listeArticleFiltre = ArticleVenduManager.getInstanceArticle().venteEnCoursFiltre(contient, categorie);
-			
 			request.setAttribute("listeArticleFiltre", listeArticleFiltre);
-			
 			
 		} catch (BusinessException e) {
 			
 			e.printStackTrace();
-			
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+			doGet(request, response);
 		}
 		
 		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);

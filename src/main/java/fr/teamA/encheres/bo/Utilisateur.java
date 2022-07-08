@@ -158,6 +158,14 @@ public class Utilisateur implements Serializable {
 	
 	
 
+	public int getAdministrateur() {
+		return administrateur;
+	}
+
+	public void setAdministrateur(int administrateur) {
+		this.administrateur = administrateur;
+	}
+
 	@Override
 	public String toString() {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="

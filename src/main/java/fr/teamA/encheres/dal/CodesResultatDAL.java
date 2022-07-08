@@ -7,7 +7,7 @@ public abstract class CodesResultatDAL {
 	
 	public static final int INSERT_UTILISATEUR_NULL=10000;
 	
-	public static final int INSERT_UTILISATEUR_ECHEC=10001;
+	public static final int ECHEC_MISE_A_JOUR=10001;
 
 	public static final int LECTURE_LISTE_ECHEC = 10003;
 	
@@ -15,7 +15,7 @@ public abstract class CodesResultatDAL {
 	
 	public static final int INSERT_ARTICLES_VENDUS_NULL = 10011;
 	
-	public static final int SELECT_LISTE_PSEUDO_ECHEC_BDD= 10013;
+	public static final int ERREUR_NON_GEREE= 10013;
 
 	public static final int DELETE_UTILISATEUR_ECHEC = 10016;
 }

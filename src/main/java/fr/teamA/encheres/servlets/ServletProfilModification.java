@@ -33,8 +33,11 @@ public class ServletProfilModification extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ProfilModification.jsp");
+		
 		rd.forward(request, response);
+		
 	}
 
 	/**
@@ -42,33 +45,46 @@ public class ServletProfilModification extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
 		List<Integer> listeCodesErreur = new ArrayList<>();
-		String verifMDP;
+		Utilisateur user = (Utilisateur)request.getSession().getAttribute("utilisateur");
+		String mdpActuel = request.getParameter("mdpActuel");
+		String verifMDP=null;
+		String nouveauMDP = null;
+		String mdp=null;
+		String email=user.getEmail();
+		String pseudo=user.getPseudo();
 
+		verifMDP = request.getParameter("verifMDP");
+		nouveauMDP = request.getParameter("mdpFutur");
+		
+		
+		Utilisateur utilisateur=null;
 		try {
-			Utilisateur utilisateur = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
+			utilisateur = new Utilisateur(user.getNoUtilisateur(),request.getParameter("pseudo"), request.getParameter("nom"),
 					request.getParameter("prenom"), request.getParameter("email"), request.getParameter("telephone"),
 					request.getParameter("rue"), request.getParameter("code_postal"), request.getParameter("ville"),
-					request.getParameter("motDePasse"), 0, 0);
-			verifMDP = request.getParameter("verifMDP");
-			
-			UtilisateurManager.getInstance().modifierUtilisateur(utilisateur, verifMDP);
+					request.getParameter("mdpFutur"), user.getCredit(), user.getAdministrateur());
+		
+			UtilisateurManager.getInstance().modifierUtilisateur(utilisateur,mdpActuel, verifMDP,email,pseudo);
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			
-			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+			response.sendRedirect("Accueil");
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			listeCodesErreur.add(CodesResultatServlets.FORMAT_UTILISATEUR_ERREUR);
+			request.getSession().setAttribute("utilisateur", utilisateur);
+			doGet(request, response);
 
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			e.printStackTrace();
-		}
-
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ProfilModification.jsp");
-		rd.forward(request, response);
+			request.getSession().setAttribute("utilisateur", utilisateur);
+			doGet(request, response);
+			}
+		request.getSession().setAttribute("utilisateur", utilisateur);
+		
 	}
 
 }

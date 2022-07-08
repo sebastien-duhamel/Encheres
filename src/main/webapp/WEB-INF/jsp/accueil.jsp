@@ -61,16 +61,13 @@
 					<div class= "item">
 						<input id="rechercher"type="submit" value="Rechercher" />
 					</div>
-			
-			
-	<!-- 	</div>		 -->	
 		
 		</form>
 		
 		<div id="vide">
 		<br>
 			<c:if test = "${empty listeArticleFiltre}">
-				<p >Il n'y a pas d'enchère en cours, vous n'avez pas quelque chose à proposer à la vente?</p>
+				<p >Il n'y a pas d'enchère en cours, avez vous un objet à proposer à la vente?</p>
 				
 			</c:if>	
 		</div>
@@ -88,7 +85,17 @@
 								<p>${ArticleFiltre.nomArticle}</p>
 								<p>Prix : ${ArticleFiltre.miseAPrix}</p>
 								<p>Fin de L'enchère: ${ArticleFiltre.dateFinEncheres}</p>
-								<p>vendeur : ${ArticleFiltre.vendeur.pseudo }</p>
+								<c:choose>
+									<c:when test="${utilisateur!=null}">
+										<form for="marchand" method="post" action="AfficherUtilisateur" name="marchand">
+										vendeur : <input name="marchand" id="marchand" type="submit" value="${ArticleFiltre.vendeur.pseudo }"/>
+										</form>
+									</c:when>
+									<c:otherwise>
+										<p>vendeur : ${ArticleFiltre.vendeur.pseudo }</p>
+									</c:otherwise>
+								
+								</c:choose>
 							</div>
 						</div>
 					</c:forEach>
@@ -97,11 +104,9 @@
 			
 		</div>		
 		
-		</br>
-		</br>
+		<br/>
+		<br/>
 		
 	</section>
-		
-		
 </body>
 </html>

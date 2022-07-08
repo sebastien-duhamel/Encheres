@@ -58,9 +58,7 @@ public class ServletProfilCreation extends HttpServlet {
 			
 			UtilisateurManager.getInstance().ajouterUtilisateur(utilisateur, verifMDP);
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			
-			//request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
-			response.sendRedirect("Accueil");//test si ajout ok redirige vers accueil+mode connecter
+			response.sendRedirect("Accueil");
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
@@ -70,6 +68,7 @@ public class ServletProfilCreation extends HttpServlet {
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			e.printStackTrace();
+			doGet(request, response);
 		}
 
 		

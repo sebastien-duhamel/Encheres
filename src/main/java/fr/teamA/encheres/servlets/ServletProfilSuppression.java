@@ -52,13 +52,12 @@ public class ServletProfilSuppression extends HttpServlet {
 		List<Integer> listeCodesErreur = new ArrayList<>();
 
 		Utilisateur user = (Utilisateur)request.getSession().getAttribute("utilisateur");
-		
+		String mdpActuel = request.getParameter("mdpActuel");
 				
 		try {
 			
-			UtilisateurManager.getInstance().supprimerUtilisateur(user.getNoUtilisateur());
+			UtilisateurManager.getInstance().supprimerUtilisateur(user, mdpActuel);
 			
-//			request.getSession().setAttribute("utilisateur", utilisateur);
 			response.sendRedirect("Accueil");
 			
 		} catch (NumberFormatException e) {
